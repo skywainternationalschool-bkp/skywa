@@ -289,12 +289,33 @@
       <div><h3 class="footer-title">Admissions</h3><ul><li><a href="#contact">Admission Enquiry</a></li><li><a href="#contact">School Visit</a></li><li><a href="#contact">Contact Office</a></li></ul></div>
       <div><h3 class="footer-title">Contact</h3><ul><li>Naya Tola Madhopur, Bakhtiyarpur, Patna, Bihar</li><li>+91 7870296365</li><li>skywainternationalschool@gmail.com</li></ul></div>
     </div>
+    
+  <div class="visitor-counter" aria-label="Website visitor count">
+    👁️ Visitors: <strong id="visitorCount">—</strong>
+  </div>
+
     <div class="container copyright">© <span id="year"></span> Skywa International School, Bkp, Patna. All Rights Reserved.</div>
   </footer>
 
   <script>
     function toggleMenu(){document.getElementById('menu').classList.toggle('open')}
     document.querySelectorAll('#menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('menu').classList.remove('open')));
+
+
+    async function loadVisitorCount(){
+      const el=document.getElementById("visitorCount");
+      if(!el) return;
+      try{
+        const response=await fetch("https://api.counterapi.dev/v1/skywa-international-school/visitors/up");
+        if(!response.ok) throw new Error("counter unavailable");
+        const data=await response.json();
+        const value=data.count ?? data.value;
+        if(value !== undefined) el.textContent=Number(value).toLocaleString("en-IN");
+      }catch(error){
+        el.textContent="—";
+      }
+    }
+    loadVisitorCount();
 
     function openLightbox(el){
       document.getElementById('lightboxImg').src=el.querySelector('img').src;
