@@ -368,9 +368,50 @@
       <div><h3 class="footer-title">Contact</h3><ul><li>Naya Tola Madhopur, Bakhtiyarpur, Patna, Bihar</li><li>+91 7870296365</li><li>skywainternationalschool@gmail.com</li></ul></div>
     </div>
     
-  <div class="visitor-counter" aria-label="Website visitor count">
-    👁️ Visitors: <strong id="visitorCount">—</strong>
-  </div>
+  <div class="visitor-counter">
+    👁️ Unique Visitors:
+    <strong id="visitorCount">Loading...</strong>
+</div>
+
+<script>
+async function countUniqueVisitor() {
+    const counter = document.getElementById("visitorCount");
+
+    // Check whether this visitor has already been counted
+    const alreadyCounted = localStorage.getItem("skywaVisitorCounted");
+
+    try {
+        let url;
+
+        if (alreadyCounted) {
+            // Don't increment the counter
+            url = "https://api.counterapi.dev/v1/skywa-international-school/visitors";
+        } else {
+            // Increment only for a new browser
+            url = "https://api.counterapi.dev/v1/skywa-international-school/visitors/up";
+
+            localStorage.setItem("skywaVisitorCounted", "true");
+        }
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Counter unavailable");
+        }
+
+        const data = await response.json();
+
+        counter.textContent =
+            Number(data.count ?? data.value).toLocaleString("en-IN");
+
+    } catch (error) {
+        counter.textContent = "—";
+        console.error("Visitor counter error:", error);
+    }
+}
+
+countUniqueVisitor();
+</script>
 
     <div class="container copyright">© 2013-<span id="year"></span> Skywa International School, Bkp, Patna. All Rights Reserved.</div>
   </footer>
