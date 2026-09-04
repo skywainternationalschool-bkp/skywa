@@ -153,6 +153,23 @@
         font-size: 13px;
     }
 }
+/* PDF Button Text & Background Color */
+.pdf-link-btn {
+  background: #7a2e2a; /* Background color */
+  color: #ffffff !important; /* Font color (White) */
+  font-size: 14px;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+/* Hover Effect for PDF Button */
+.pdf-link-btn:hover {
+  background: #e74c3c;
+  color: #ffffff !important;
+}
   </style>
 </head>
 <body>
@@ -303,7 +320,7 @@
         <div class="notice-grid">
           <div class="panel">
             <h3>Latest Notices</h3>
-            <div class="notice"><div class="date"><b>23-26</b>SEP</div><div class="notice-title-box"><h4>2nd Term Unit Test 2026-27 <a href="notices/2Unit Test 2026-27.pdf" target="_blank" class="pdf-link-btn">📄 PDF</a></h4><p>Exam.</p></div></div>
+            <div class="notice"><div class="date"><b>23-26</b>SEP</div><div class="notice-title-box"><h4><a href="notices/2Unit Test 2026-27.pdf" target="_blank" class="pdf-link-btn">2nd Term Unit Test 2026-27 <span class="tag">📄 PDF</a></h4><p>Exam.</p></div></div>
             <div class="notice"><div class="date"><b>15</b>AUG</div><div><h4>Independence Day Celebration</h4><p>Students participated in a special school celebration.</p></div></div>
             <div class="notice"><div class="date"><b>10</b>AUG</div><div><h4>Parent-Teacher Meeting</h4><p>Details regarding the upcoming interaction will be shared by the school.</p></div></div>
           </div>
