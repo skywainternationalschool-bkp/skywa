@@ -154,3 +154,31 @@ document.addEventListener("DOMContentLoaded", () => {
   updateVisitorDateTime();
   setInterval(updateVisitorDateTime, 1000);
 });
+
+// Popup Notification Modal Functions
+function openPopupModal() {
+  const popup = document.getElementById("popupModal");
+  if (popup) {
+    popup.classList.add("show");
+  }
+}
+
+function closePopupModalDirect() {
+  const popup = document.getElementById("popupModal");
+  if (popup) {
+    popup.classList.remove("show");
+  }
+}
+
+function closePopupModal(event) {
+  // Close if clicking outside the image container
+  if (event.target.id === "popupModal") {
+    closePopupModalDirect();
+  }
+}
+
+// Trigger popup automatically when page loads
+window.addEventListener("load", () => {
+  // Optional delay (e.g., 500ms) for smoother entrance
+  setTimeout(openPopupModal, 500);
+});
