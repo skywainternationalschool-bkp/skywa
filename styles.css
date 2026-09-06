@@ -961,7 +961,7 @@ footer {
   position: relative;
   max-width: 550px;
   width: 100%;
-  background: #fff;
+  background: #FFB343;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
@@ -976,7 +976,7 @@ footer {
 .popup-content img {
   display: block;
   width: 100%;
-  max-height: 100vh; /* Limits image height to 85% of viewport height */
+  max-height: 95vh; /* Limits image height to 85% of viewport height */
   object-fit: contain;
 }
 
