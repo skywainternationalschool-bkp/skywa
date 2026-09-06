@@ -974,9 +974,10 @@ footer {
 }
 
 .popup-content img {
-  width: 100%;
-  height: auto;
   display: block;
+  width: 100%;
+  max-height: 70vh; /* Limits image height to 70% of viewport height */
+  object-fit: contain;
 }
 
 .popup-close {
