@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Notice Board & Announcements - Skywa International School, Bakhtiyarpur.">
+  <title>Notice Board - Skywa International School</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="skywa-school-assets/favicon.png">
+  
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Automatic Popup Notification Modal -->
+  <div class="popup-modal" id="popupModal">
+    <div class="popup-content">
+      <button class="popup-close" id="popupClose" aria-label="Close popup">&times;</button>
+      <a href="#active-notices">
+        <img src="skywa-school-assets/Future1.png" alt="School Notice Banner" class="popup-img">
+      </a>
+    </div>
+  </div>
+
+  <header>
+    <div class="topbar">
+      <div class="container topbar-content">
+        <!-- Left side -->
+        <div class="topbar-left">
+          ☎ <a href="tel:+916132356487">06132356487</a>, <a href="tel:+917870296365">7870296365</a>
+          &nbsp; | &nbsp;
+          ✉ <a href="mailto:skywainternationalschool@gmail.com">skywainternationalschool@gmail.com</a>
+        </div>
+
+        <!-- Right side: Visitor Local Date & Time -->
+        <div class="topbar-right">
+          <span id="visitorDateTime"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container nav">
+      <a class="brand" href="index.html#home">
+        <img class="school-logo" src="skywa-school-assets/logo.png" alt="Skywa International School Logo">
+        <div><strong>SKYWA</strong><small>INTERNATIONAL SCHOOL · BAKHTIYARPUR</small></div>
+      </a>
+
+      <nav>
+        <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+        <ul id="menu">
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a class="active" href="notice.html">Notice</a></li>
+          <li><a href="index.html#academics">Academics</a></li>
+          <li><a href="index.html#facilities">Facilities</a></li>
+          <li><a href="index.html#gallery">Gallery</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="https://onlinereg.schooleartherp.com/?lcode=SKYINT/register" target="_blank" rel="noopener noreferrer">Registration</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Notice Page Header -->
+    <section class="hero" style="min-height: 280px; background-position: center;">
+      <div class="container">
+        <div class="hero-content" style="padding: 40px 0;">
+          <span class="eyebrow">OFFICIAL ANNOUNCEMENTS</span>
+          <h1>Notice Board</h1>
+          <p>Stay updated with the latest news, exam routines, circulars, and event schedules.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Notice Content -->
+    <section id="active-notices">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">SCHOOL CIRCULARS</span>
+          <h2>Important Notices & Downloads</h2>
+          <p>Click on any notice below to view details or download official PDF files.</p>
+        </div>
+
+        <div class="notice-grid">
+          <!-- Left Panel: Recent Notices -->
+          <div class="panel">
+            <h3>Recent Notices</h3>
+            
+            <div class="notice">
+              <div class="date"><b>23-26</b>SEP</div>
+              <div class="notice-title-box">
+                <h4>
+                  <a href="notices/2Unit Test 2026-27.pdf" target="_blank" class="pdf-link-btn">
+                    2nd Term Unit Test Schedule 2026-27 <span class="tag">📄 Download PDF</span>
+                  </a>
+                </h4>
+                <p>The second unit test examination routine for all grades has been published.</p>
+              </div>
+            </div>
+
+            <div class="notice">
+              <div class="date"><b>15</b>AUG</div>
+              <div class="notice-title-box">
+                <h4>Independence Day Celebration Report</h4>
+                <p>Students participated in the flag-hoisting ceremony, cultural activities, and prize distribution.</p>
+              </div>
+            </div>
+
+            <div class="notice">
+              <div class="date"><b>10</b>AUG</div>
+              <div class="notice-title-box">
+                <h4>Parent-Teacher Meeting (PTM)</h4>
+                <p>Interactive discussion regarding academic performance and term progress.</p>
+              </div>
+            </div>
+
+            <div class="notice">
+              <div class="date"><b>01</b>AUG</div>
+              <div class="notice-title-box">
+                <h4>Revised School Uniform Guidelines</h4>
+                <p>All students are requested to adhere strictly to the updated summer uniform dress code.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Panel: Upcoming Events & Holidays -->
+          <div class="panel">
+            <h3>Upcoming Events & Holidays</h3>
+            
+            <div class="event">
+              <div class="calendar"><b>05</b>SEP</div>
+              <div>
+                <h4>Teachers' Day</h4>
+                <p>Special student-led activities and cultural celebrations.</p>
+              </div>
+            </div>
+
+            <div class="event">
+              <div class="calendar"><b>14</b>SEP</div>
+              <div>
+                <h4>Ganesh Chaturthi</h4>
+                <p>School holiday / Cultural program.</p>
+              </div>
+            </div>
+
+            <div class="event">
+              <div class="calendar"><b>17</b>SEP</div>
+              <div>
+                <h4>Vishwakarma Puja</h4>
+                <p>Campus observance.</p>
+              </div>
+            </div>
+
+            <div class="event">
+              <div class="calendar"><b>02</b>OCT</div>
+              <div>
+                <h4>Gandhi Jayanti</h4>
+                <p>National holiday and commemorative session.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px">
+          <img class="school-logo" src="skywa-school-assets/logo.png" alt="Skywa International School Logo">
+          <div><strong style="color:#fff">Skywa</strong><small style="color:#aebbc7">INTERNATIONAL SCHOOL</small></div>
+        </div>
+        <p>Inspiring students to learn, lead and make a positive difference.</p>
+        <div class="social">
+          <a href="https://whatsapp.com/channel/0029Va6OpnW4inonSCvy0i25" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <img src="skywa-school-assets/whatsapp.png" alt="WhatsApp">
+          </a>
+          <a href="https://www.instagram.com/skywa_int_school_bkp/reels/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <img src="skywa-school-assets/instagram.png" alt="Instagram">
+          </a>
+          <a href="https://www.youtube.com/@SkywaInternationalSchool-7413" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <img src="skywa-school-assets/youtube.png" alt="YouTube">
+          </a>
+        </div>
+      </div>
+      <div><h3 class="footer-title">Quick Links</h3><ul><li><a href="index.html#about">About Us</a></li><li><a href="index.html#academics">Academics</a></li><li><a href="index.html#facilities">Facilities</a></li><li><a href="index.html#gallery">Gallery</a></li><li><a href="notice.html">Notice Board</a></li></ul></div>
+      <div><h3 class="footer-title">Admissions</h3><ul><li><a href="index.html#contact">Admission Enquiry</a></li><li><a href="index.html#contact">School Visit</a></li><li><a href="index.html#contact">Contact Office</a></li></ul></div>
+      <div><h3 class="footer-title">Contact</h3><ul><li>Naya Tola Madhopur, Bakhtiyarpur, Patna, Bihar</li><li>☎ <a href="tel:+916132356487">06132356487</a>, <a href="tel:+917870296365">7870296365</a></li><li>skywainternationalschool@gmail.com</li></ul></div>
+    </div>
+    
+    <div class="visitor-counter">
+      👁️ Unique Visitors:
+      <strong id="visitorCount">Loading...</strong>
+    </div>
+
+    <div class="container copyright">© 2013-<span id="year"></span> Skywa International School, Bkp, Patna. All Rights Reserved.</div>
+  </footer>
+
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
