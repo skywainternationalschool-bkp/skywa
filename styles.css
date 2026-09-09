@@ -1251,3 +1251,62 @@ nav ul li.dropdown {
     height: auto;
   }
 }
+/* Mobile Navigation Button & Menu Fix */
+@media (max-width: 767px) {
+  /* Display the hamburger button on mobile screens */
+  .menu-btn {
+    display: block !important;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    color: #1e3a8a;
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+
+  /* Hide the menu list by default on mobile */
+  nav ul#menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #e2e8f0;
+    padding: 10px 0;
+    z-index: 999;
+  }
+
+  /* Show the menu list when active class is toggled via JavaScript */
+  nav ul#menu.active {
+    display: flex !important;
+  }
+
+  /* Style mobile link items */
+  nav ul#menu li {
+    width: 100%;
+  }
+
+  nav ul#menu li a {
+    display: block;
+    padding: 12px 20px;
+    color: #263b4f;
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
+
+/* Ensure the hamburger button stays hidden on desktop screens */
+@media (min-width: 768px) {
+  .menu-btn {
+    display: none !important;
+  }
+
+  nav ul#menu {
+    display: flex !important;
+    flex-direction: row;
+  }
+}
