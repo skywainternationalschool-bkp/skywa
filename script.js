@@ -1,11 +1,11 @@
 // Toggle navigation menu
 function toggleMenu() {
-  document.getElementById('menu').classList.toggle('open');
+  document.getElementById('menu').classList.toggle('active');
 }
 
 document.querySelectorAll('#menu a').forEach((a) =>
   a.addEventListener('click', () =>
-    document.getElementById('menu').classList.remove('open')
+    document.getElementById('menu').classList.remove('active')
   )
 );
 
