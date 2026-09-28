@@ -3,11 +3,21 @@ function toggleMenu() {
   document.getElementById('menu').classList.toggle('active');
 }
 
-document.querySelectorAll('#menu a').forEach((a) =>
-  a.addEventListener('click', () =>
-    document.getElementById('menu').classList.remove('active')
-  )
-);
+// Close mobile menu when clicking normal links, but toggle dropdowns on mobile
+document.querySelectorAll('#menu a').forEach((a) => {
+  a.addEventListener('click', (e) => {
+    const parentLi = a.parentElement;
+    
+    // If the clicked item is a dropdown parent, toggle its sub-menu instead of closing everything
+    if (parentLi.classList.contains('dropdown')) {
+      e.preventDefault();
+      parentLi.classList.toggle('mobile-open');
+    } else {
+      // Close mobile menu for regular links
+      document.getElementById('menu').classList.remove('active');
+    }
+  });
+});
 
 // Unique Visitor Counter
 async function countUniqueVisitor() {
