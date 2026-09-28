@@ -1059,8 +1059,8 @@ nav ul li.dropdown {
   }
 }
 
-/* Mobile Navigation Drawer Full View Styling */
-@media (max-width: 700px) {
+/* Fullscreen or Drawer Mobile Menu Overlay */
+@media (max-width: 900px) {
   .menu-btn {
     display: block !important;
     background: transparent;
@@ -1070,34 +1070,78 @@ nav ul li.dropdown {
     color: #1e3a8a;
   }
 
+  /* Hidden by default */
   nav ul#menu {
-    display: none; /* Hidden by default */
+    display: none;
     flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: #ffffff;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background-color: #8b0000; /* Deep maroon theme matching your image */
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.4);
+    padding: 60px 0 20px 0;
     z-index: 9999;
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
   }
 
-  /* Triggers when toggleMenu() adds the active class */
+  /* Active state triggered via toggleMenu() */
   nav ul#menu.active {
     display: flex !important;
   }
 
+  /* Each menu item block */
   nav ul#menu li {
-    width: 80%;
-    text-align: left;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
   }
 
+  /* Menu text links */
   nav ul#menu li a {
-    padding: 12px 25px;
-    display: block;
-    font-size: 15px;
-    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 22px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  nav ul#menu li a:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+    color: #ffd700;
+  }
+
+  /* Add dropdown indicator arrows to match the reference */
+  nav ul#menu li.dropdown > a::after,
+  nav ul#menu li:has(.dropdown-menu) > a::after {
+    content: "⌄";
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  /* Close (X) button inside the mobile drawer */
+  .mobile-menu-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 10000;
+  }
+}
+
+@media (min-width: 901px) {
+  .mobile-menu-close {
+    display: none;
   }
 }
 /* ==========================================
