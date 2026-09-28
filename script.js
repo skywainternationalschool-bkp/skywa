@@ -70,7 +70,7 @@ function changeGallerySlide(direction) {
 }
 
 function startGalleryAutoPlay() {
-  galleryTimer = setInterval(() => showGallerySlide(galleryIndex + 1), 4000);
+  galleryTimer = setInterval(() => showGallerySlide(galleryIndex + 1), 6000);
 }
 
 function restartGalleryAutoPlay() {
