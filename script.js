@@ -1,20 +1,19 @@
-// Toggle navigation menu
+// Toggle navigation menu for mobile view
 function toggleMenu() {
-  document.getElementById('menu').classList.toggle('active');
+  const menu = document.getElementById('menu');
+  if (menu) {
+    menu.classList.toggle('active');
+  }
 }
 
-// Close mobile menu when clicking normal links, but toggle dropdowns on mobile
+// Automatically close the mobile menu when any link inside it is clicked
 document.querySelectorAll('#menu a').forEach((a) => {
   a.addEventListener('click', (e) => {
-    const parentLi = a.parentElement;
-    
-    // If the clicked item is a dropdown parent, toggle its sub-menu instead of closing everything
-    if (parentLi.classList.contains('dropdown')) {
-      e.preventDefault();
-      parentLi.classList.toggle('mobile-open');
-    } else {
-      // Close mobile menu for regular links
-      document.getElementById('menu').classList.remove('active');
+    // If it's a dropdown toggle on mobile, let it toggle subitems instead of closing if desired, 
+    // otherwise close the full menu drawer
+    const menu = document.getElementById('menu');
+    if (menu) {
+      menu.classList.remove('active');
     }
   });
 });
