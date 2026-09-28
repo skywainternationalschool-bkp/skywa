@@ -1059,69 +1059,45 @@ nav ul li.dropdown {
   }
 }
 
-/* Mobile Responsive Dropdown & Menu Styling */
+/* Mobile Navigation Drawer Full View Styling */
 @media (max-width: 900px) {
   .menu-btn {
     display: block !important;
     background: transparent;
     border: none;
-    font-size: 28px;
-    color: #1e3a8a;
+    font-size: 26px;
     cursor: pointer;
-    padding: 5px 10px;
+    color: #1e3a8a;
   }
 
   nav ul#menu {
-    display: none;
+    display: none; /* Hidden by default */
     flex-direction: column;
     position: absolute;
     top: 100%;
     left: 0;
-    right: 0;
     width: 100%;
-    background-color: #ffffff;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    border-top: 1px solid #e2e8f0;
-    padding: 10px 0;
-    z-index: 999;
+    background: #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    padding: 15px 0;
+    z-index: 9999;
   }
 
+  /* Triggers when toggleMenu() adds the active class */
   nav ul#menu.active {
     display: flex !important;
   }
 
   nav ul#menu li {
     width: 100%;
+    text-align: left;
   }
 
   nav ul#menu li a {
+    padding: 12px 25px;
     display: block;
-    padding: 12px 20px;
-    color: #263b4f;
     font-size: 15px;
-    font-weight: 600;
-  }
-
-  /* Hide dropdown sub-menu by default on mobile */
-  .dropdown-menu {
-    display: none;
-    position: static;
-    box-shadow: none;
-    background: #f8fafc;
-    border-radius: 0;
-    margin-top: 0;
-    padding: 4px 0 4px 15px;
-    width: 100%;
-  }
-
-  /* Show sub-menu when parent .dropdown has .mobile-open class */
-  nav ul li.dropdown.mobile-open .dropdown-menu {
-    display: flex !important;
-  }
-
-  /* Rotate arrow when open on mobile */
-  nav ul li.dropdown.mobile-open .arrow {
-    transform: rotate(180deg);
+    border-bottom: 1px solid #f1f5f9;
   }
 }
 /* ==========================================
