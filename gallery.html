@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photo Gallery and Activity Groups - Skywa International School, Bakhtiyarpur.">
+  <title>Gallery - Skywa International School</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="skywa-school-assets/favicon.png">
+  
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Gallery Page Specific Styling */
+    .gallery-filter-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 30px 0;
+    }
+    .filter-btn {
+      background-color: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #1e3a8a;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background-color: #1e3a8a;
+      color: #ffffff;
+      border-color: #1e3a8a;
+    }
+    .activity-section {
+      margin-bottom: 50px;
+    }
+    .activity-title {
+      font-size: 22px;
+      color: #1e3a8a;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+    }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .photo-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      cursor: pointer;
+      background: #000;
+    }
+    .photo-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .photo-item:hover img {
+      transform: scale(1.05);
+    }
+    .photo-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: #fff;
+      padding: 15px 10px 10px 10px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html#home">
+        <img class="school-logo" src="skywa-school-assets/logo.png" alt="Skywa International School Logo">
+        <div><strong>SKYWA</strong><small>INTERNATIONAL SCHOOL · BAKHTIYARPUR</small></div>
+      </a>
+
+      <nav>
+        <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+        <ul id="menu">
+          <button class="mobile-menu-close" onclick="toggleMenu()" aria-label="Close menu">&times;</button>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">The School</a></li>
+          <li><a href="notice.html">Notice</a></li>
+          <li><a href="index.html#academics">Academics</a></li>
+          <li><a href="index.html#facilities">Campus</a></li>
+          <li><a class="active" href="gallery.html">Media Gallery</a></li>
+          <li><a href="fee-structure.html">Admission</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="min-height: 220px; background-position: center;">
+      <div class="container">
+        <div class="hero-content" style="padding: 30px 0;">
+          <span class="eyebrow">CAMPUS LIFE & MOMENTS</span>
+          <h1>Activity Media Gallery</h1>
+          <p>Explore pictures and highlights categorized by school activities, events, and celebrations.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" style="padding: 40px 20px;">
+      
+      <!-- Filter Buttons -->
+      <div class="gallery-filter-buttons">
+        <button class="filter-btn active" onclick="filterGallery('all')">All Activities</button>
+        <button class="filter-btn" onclick="filterGallery('sports')">Sports & Games</button>
+        <button class="filter-btn" onclick="filterGallery('cultural')">Cultural Events</button>
+        <button class="filter-btn" onclick="filterGallery('academic')">Academic Activities</button>
+        <button class="filter-btn" onclick="filterGallery('celebrations')">Festivals & Celebrations</button>
+      </div>
+
+      <!-- Group 1: Sports & Games -->
+      <div class="activity-section" data-category="sports">
+        <h3 class="activity-title">Sports & Games</h3>
+        <div class="photo-grid">
+          <div class="photo-item" onclick="openLightbox(this)">
+            <img src="skywa-school-assets/gallery-1.jpg" alt="Annual Sports Meet">
+            <div class="photo-caption">Annual Sports Meet 2025</div>
+          </div>
+          <div class="photo-item" onclick="openLightbox(this)">
+            <img src="skywa-school-assets/gallery-2.jpg" alt="Cricket Match">
+            <div class="photo-caption">Inter-House Cricket Tournament</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 2: Cultural Events -->
+      <div class="activity-section" data-category="cultural">
+        <h3 class="activity-title">Cultural Events</h3>
+        <div class="photo-grid">
+          <div class="photo-item" onclick="openLightbox(this)">
+            <img src="skywa-school-assets/gallery-3.jpg" alt="Dance Performance">
+            <div class="photo-caption">Annual Day Dance Performance</div>
+          </div>
+          <div class="photo-item" onclick="openLightbox(this)">
+            <img src="skywa-school-assets/gallery-4.jpg" alt="Singing Competition">
+            <div class="photo-caption">Music & Singing Competition</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 3: Academic Activities -->
+      <div class="activity-section" data-category="academic">
+        <h3 class="activity-title">Academic & Science Exhibition</h3>
+        <div class="photo-grid">
+          <div class="photo-item" onclick="openLightbox(this)">
+            <img src="skywa-school-assets/gallery-5.jpg" alt="Science Exhibition">
+            <div class="photo-caption">Science Project Presentation</div>
+          </div>
+          <div class="photo-item" onclick="openLightbox(this)">
+            <img src="skywa-school-assets/gallery-6.jpg" alt="Smart Class Learning">
+            <div class="photo-caption">Interactive Smart Class Session</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 4: Celebrations -->
+      <div class="activity-section" data-category="celebrations">
+        <h3 class="activity-title">Festivals & Celebrations</h3>
+        <div class="photo-grid">
+          <div class="photo-item" onclick="openLightbox(this)">
+            <img src="skywa-school-assets/about-img.jpg" alt="School Celebration">
+            <div class="photo-caption">Independence Day Celebration</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Lightbox Modal Container -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightboxImg" src="" alt="Enlarged view">
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px">
+          <img class="school-logo" src="skywa-school-assets/logo.png" alt="Skywa International School Logo">
+          <div><strong style="color:#fff">Skywa</strong><small style="color:#aebbc7">INTERNATIONAL SCHOOL</small></div>
+        </div>
+        <p>Inspiring students to learn, lead and make a positive difference.</p>
+      </div>
+      <div><h3 class="footer-title">Quick Links</h3><ul><li><a href="index.html#about">About Us</a></li><li><a href="index.html#academics">Academics</a></li><li><a href="notice.html">Notice Board</a></li></ul></div>
+      <div><h3 class="footer-title">Admissions</h3><ul><li><a href="fee-structure.html">Fee Structure</a></li><li><a href="index.html#contact">Admission Enquiry</a></li></ul></div>
+      <div><h3 class="footer-title">Contact</h3><ul><li>Naya Tola Madhopur, Bakhtiyarpur, Patna, Bihar</li><li>☎ <a href="tel:+916132356487">06132356487</a></li></ul></div>
+    </div>
+    <div class="visitor-counter">👁️ Unique Visitors: <strong id="visitorCount">Loading...</strong></div>
+    <div class="container copyright">© 2013-<span id="year"></span> Skywa International School, Bkp, Patna. All Rights Reserved.</div>
+  </footer>
+
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
+  <script>
+    // Filter script for gallery categories
+    function filterGallery(category) {
+      const sections = document.querySelectorAll('.activity-section');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      sections.forEach(section => {
+        if (category === 'all' || section.getAttribute('data-category') === category) {
+          section.style.display = 'block';
+        } else {
+          section.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
