@@ -109,25 +109,26 @@ if (gallerySlider) {
   gallerySlider.addEventListener("mouseleave", startGalleryAutoPlay);
 }
 
-// Multi-Image Lightbox Logic
+// Multi-Image Lightbox Logic for a Single Card
 let currentLightboxIndex = 0;
 let lightboxImages = [];
 
 function openLightbox(el) {
-  // Collect all photo images on the current page
-  lightboxImages = Array.from(document.querySelectorAll('.photo-item img, .gallery-slide img'));
-  const clickedImg = el.querySelector('img') || el;
+  // Find all image elements inside the clicked card container
+  lightboxImages = Array.from(el.querySelectorAll('img'));
   
-  currentLightboxIndex = lightboxImages.indexOf(clickedImg);
-  if (currentLightboxIndex === -1) currentLightboxIndex = 0;
+  if (lightboxImages.length === 0) return;
 
+  currentLightboxIndex = 0; // Start with the first image of this card
   updateLightboxImage();
   document.getElementById('lightbox').classList.add('open');
 }
 
 function updateLightboxImage() {
   if (lightboxImages.length > 0) {
-    document.getElementById('lightboxImg').src = lightboxImages[currentLightboxIndex].src;
+    const lightboxImg = document.getElementById('lightboxImg');
+    lightboxImg.src = lightboxImages[currentLightboxIndex].src;
+    lightboxImg.alt = lightboxImages[currentLightboxIndex].alt || 'Gallery preview';
   }
 }
 
@@ -136,11 +137,14 @@ function changeLightboxImage(direction, event) {
   if (lightboxImages.length === 0) return;
 
   currentLightboxIndex += direction;
+  
+  // Loop through images within this specific card
   if (currentLightboxIndex >= lightboxImages.length) {
-    currentLightboxIndex = 0; // Loop back to the first image
+    currentLightboxIndex = 0; 
   } else if (currentLightboxIndex < 0) {
-    currentLightboxIndex = lightboxImages.length - 1; // Loop to the last image
+    currentLightboxIndex = lightboxImages.length - 1; 
   }
+  
   updateLightboxImage();
 }
 
@@ -148,7 +152,6 @@ function closeLightbox(e) {
   if (e && e.target && (e.target.id === 'lightboxImg' || e.target.classList.contains('lightbox-nav'))) return;
   document.getElementById('lightbox').classList.remove('open');
 }
-
 // Live Visitor Local Date & Time Display
 function updateVisitorDateTime() {
   const visitorElement = document.getElementById("visitorDateTime");
