@@ -180,13 +180,41 @@
       <!-- Filter Buttons -->
       <div class="gallery-filter-buttons">
         <button class="filter-btn active" onclick="filterGallery('all')">All Activities</button>
-        <button class="filter-btn" onclick="filterGallery('sports')">Sports & Games</button>
-        <button class="filter-btn" onclick="filterGallery('cultural')">Cultural Events</button>
         <button class="filter-btn" onclick="filterGallery('academic')">Academic Activities</button>
         <button class="filter-btn" onclick="filterGallery('celebrations')">Festivals & Celebrations</button>
+        <button class="filter-btn" onclick="filterGallery('sports')">Sports & Games</button>
+         <button class="filter-btn" onclick="filterGallery('cultural')">Cultural Events</button>
+     </div>
+<!-- Group 1: Academic Activities -->
+      <div class="activity-section" data-category="academic">
+        <h3 class="activity-title">Academic & Science Exhibition</h3>
+        <div class="photo-grid">
+          <div class="photo-item" onclick="openLightbox(this)">
+            <img src="gallery/academic2.jpg" alt="Toppers">
+            <div class="photo-caption">Toppers 2025-26</div>
+          </div>
+          <div class="photo-item" onclick="openLightbox(this)">
+            <img src="gallery/nalanda.jpg" alt="Nalanda"><img src="gallery/nalandatour.jpg" alt="Nalanda"><img src="gallery/Tour.jpg" alt="Nalanda">
+            <img src="gallery/Tour Patna.jpg" alt="Patna" style="display: none;">
+            <div class="photo-caption">Educational Tour/div>
+          </div>
+        </div>
       </div>
-
-      <!-- Group 1: Sports & Games -->
+        
+<!-- Group 2: Celebrations -->
+      <div class="activity-section" data-category="celebrations">
+        <h3 class="activity-title">Festivals & Celebrations</h3>
+        <div class="photo-grid">
+          <div class="photo-item" onclick="openLightbox(this)">
+            <img src="gallery/Rangoli2.jpg" alt="Rangoli Competition">
+            <img src="gallery/teachers day.jpg" alt="Teachers' Day" style="display: none;">
+            <div class="photo-caption">Celebration (Multiple Photos)</div>
+          </div>
+          </div>
+        </div>
+      </div>  
+      
+ <!-- Group 3: Sports & Games -->
       <div class="activity-section" data-category="sports">
         <h3 class="activity-title">Sports & Games</h3>
         <div class="photo-grid">
@@ -201,7 +229,7 @@
         </div>
       </div>
 
-      <!-- Group 2: Cultural Events -->
+  <!-- Group 4: Cultural Events -->
       <div class="activity-section" data-category="cultural">
         <h3 class="activity-title">Cultural Events</h3>
         <div class="photo-grid">
@@ -212,34 +240,6 @@
           <div class="photo-item" onclick="openLightbox(this)">
             <img src="skywa-school-assets/gallery-4.jpg" alt="Singing Competition">
             <div class="photo-caption">Music & Singing Competition</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Group 3: Academic Activities -->
-      <div class="activity-section" data-category="academic">
-        <h3 class="activity-title">Academic & Science Exhibition</h3>
-        <div class="photo-grid">
-          <div class="photo-item" onclick="openLightbox(this)">
-            <img src="gallery/academic2.jpg" alt="Toppers">
-            <div class="photo-caption">Toppers 2025-26</div>
-          </div>
-          <div class="photo-item" onclick="openLightbox(this)">
-            <img src="skywa-school-assets/gallery-6.jpg" alt="Smart Class Learning">
-            <div class="photo-caption">Interactive Smart Class Session</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Group 4: Celebrations -->
-      <div class="activity-section" data-category="celebrations">
-        <h3 class="activity-title">Festivals & Celebrations</h3>
-        <div class="photo-grid">
-          <div class="photo-item" onclick="openLightbox(this)">
-            <img src="gallery/Rangoli2.jpg" alt="Rangoli Competition">
-            <img src="gallery/teachers day.jpg" alt="Teachers' Day" style="display: none;">
-            <div class="photo-caption">Celebration (Multiple Photos)</div>
-          </div>
           </div>
         </div>
       </div>
