@@ -109,22 +109,44 @@ if (gallerySlider) {
   gallerySlider.addEventListener("mouseleave", startGalleryAutoPlay);
 }
 
-// Lightbox Logic
+// Multi-Image Lightbox Logic
+let currentLightboxIndex = 0;
+let lightboxImages = [];
+
 function openLightbox(el) {
-  document.getElementById('lightboxImg').src = el.querySelector('img').src;
+  // Collect all photo images on the current page
+  lightboxImages = Array.from(document.querySelectorAll('.photo-item img, .gallery-slide img'));
+  const clickedImg = el.querySelector('img') || el;
+  
+  currentLightboxIndex = lightboxImages.indexOf(clickedImg);
+  if (currentLightboxIndex === -1) currentLightboxIndex = 0;
+
+  updateLightboxImage();
   document.getElementById('lightbox').classList.add('open');
 }
 
-function closeLightbox(e) {
-  if (e && e.target && e.target.id === 'lightboxImg') return;
-  document.getElementById('lightbox').classList.remove('open');
+function updateLightboxImage() {
+  if (lightboxImages.length > 0) {
+    document.getElementById('lightboxImg').src = lightboxImages[currentLightboxIndex].src;
+  }
 }
 
-function submitForm(e) {
-  e.preventDefault();
-  document.getElementById('formMsg').textContent =
-    'Thank you! Your enquiry has been received. We will contact you soon.';
-  e.target.reset();
+function changeLightboxImage(direction, event) {
+  if (event) event.stopPropagation(); // Prevent closing lightbox when clicking arrows
+  if (lightboxImages.length === 0) return;
+
+  currentLightboxIndex += direction;
+  if (currentLightboxIndex >= lightboxImages.length) {
+    currentLightboxIndex = 0; // Loop back to the first image
+  } else if (currentLightboxIndex < 0) {
+    currentLightboxIndex = lightboxImages.length - 1; // Loop to the last image
+  }
+  updateLightboxImage();
+}
+
+function closeLightbox(e) {
+  if (e && e.target && (e.target.id === 'lightboxImg' || e.target.classList.contains('lightbox-nav'))) return;
+  document.getElementById('lightbox').classList.remove('open');
 }
 
 // Live Visitor Local Date & Time Display
