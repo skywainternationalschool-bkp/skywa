@@ -247,12 +247,15 @@
     </section>
   </main>
 
-  <!-- Lightbox Modal Container with Navigation -->
+  <!-- Lightbox Modal Container -->
   <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
     <button class="lightbox-close" aria-label="Close" onclick="closeLightbox()">&times;</button>
-    <button class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1, event)" aria-label="Previous image">&#10094;</button>
-    <img id="lightboxImg" src="" alt="Enlarged view">
-    <button class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1, event)" aria-label="Next image">&#10095;</button>
+    
+    <div class="lightbox-container" onclick="event.stopPropagation()">
+      <button class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1, event)" aria-label="Previous image">&#10094;</button>
+      <img id="lightboxImg" src="" alt="Enlarged view">
+      <button class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1, event)" aria-label="Next image">&#10095;</button>
+    </div>
   </div>
 
   <footer class="footer">
