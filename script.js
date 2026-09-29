@@ -1,3 +1,16 @@
+// Automatically load header into sub-pages
+document.addEventListener("DOMContentLoaded", function() {
+  const headerPlaceholder = document.getElementById('site-header');
+  if (headerPlaceholder) {
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        headerPlaceholder.innerHTML = data;
+      })
+      .catch(error => console.error('Error loading header:', error));
+  }
+});
+
 // Toggle navigation menu for mobile view
 function toggleMenu() {
   const menu = document.getElementById('menu');
