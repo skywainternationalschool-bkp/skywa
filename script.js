@@ -1,13 +1,20 @@
-// Automatically load header into sub-pages
 document.addEventListener("DOMContentLoaded", function() {
+  // Header Load Karein
   const headerPlaceholder = document.getElementById('site-header');
   if (headerPlaceholder) {
     fetch('header.html')
       .then(response => response.text())
-      .then(data => {
-        headerPlaceholder.innerHTML = data;
-      })
+      .then(data => { headerPlaceholder.innerHTML = data; })
       .catch(error => console.error('Error loading header:', error));
+  }
+
+  // Footer Load Karein
+  const footerPlaceholder = document.getElementById('site-footer');
+  if (footerPlaceholder) {
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => { footerPlaceholder.innerHTML = data; })
+      .catch(error => console.error('Error loading footer:', error));
   }
 });
 
