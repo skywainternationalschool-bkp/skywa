@@ -205,14 +205,9 @@ function updateVisitorDateTime() {
 document.addEventListener("DOMContentLoaded", () => {
   countUniqueVisitor();
   startGalleryAutoPlay();
-  
-  const yearEl = document.getElementById('year');
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
 
   updateVisitorDateTime();
-  setInterval(updateVisitorDateTime, 1000);
+  setInterval(updateVisitorDateTime, 500);
 });
 
 // Popup Notification Modal Functions
