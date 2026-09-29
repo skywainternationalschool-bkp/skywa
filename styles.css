@@ -573,41 +573,103 @@ section {
   opacity: 1;
   transform: scale(1.25);
 }
+/* Lightbox Backdrop */
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  }
+  
+  .lightbox.open {
+    display: flex;
+  }
 
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.88);
-  z-index: 3000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 25px;
-}
+  /* Centered Content Wrapper */
+  .lightbox-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 90vw;
+    max-height: 85vh;
+  }
 
-.lightbox.open {
-  display: flex;
-}
+  /* Lightbox Image */
+  .lightbox img {
+    max-width: 80vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+  }
 
-.lightbox img {
-  max-width: 94vw;
-  max-height: 88vh;
-  border-radius: 8px;
-  box-shadow: 0 10px 50px #000;
-}
+  /* Close Button (Top Right) */
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 10002;
+    line-height: 1;
+  }
 
-.lightbox button {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  background: #fff;
-  border: 0;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  font-size: 24px;
-  cursor: pointer;
-}
+  /* Left and Right Navigation Buttons */
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    font-size: 22px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10001;
+  }
+
+  .lightbox-nav:hover {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+  }
+
+  /* Position Prev to the left, Next to the right */
+  .lightbox-prev {
+    left: -70px;
+  }
+
+  .lightbox-next {
+    right: -70px;
+  }
+
+  /* Mobile Responsive Adjustment */
+  @media (max-width: 768px) {
+    .lightbox-prev {
+      left: 10px; /* Bring inside the image boundary on small screens */
+      background: rgba(0, 0, 0, 0.7);
+    }
+    .lightbox-next {
+      right: 10px; /* Bring inside the image boundary on small screens */
+      background: rgba(0, 0, 0, 0.7);
+    }
+  }
 
 .contact {
   display: grid;
