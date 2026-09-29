@@ -13,7 +13,13 @@ document.addEventListener("DOMContentLoaded", function() {
   if (footerPlaceholder) {
     fetch('footer.html')
       .then(response => response.text())
-      .then(data => { footerPlaceholder.innerHTML = data; })
+      .then(data => { footerPlaceholder.innerHTML = data; 
+  // Yahan current year automatic set ho jayega
+      const yearSpan = document.getElementById('year');
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+    })
       .catch(error => console.error('Error loading footer:', error));
   }
 });
