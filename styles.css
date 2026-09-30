@@ -1609,3 +1609,6 @@ nav ul li.dropdown {
     text-align: center;
   }
 }
+.footer-bottom-credit strong {
+  color: #f97316; /* Vibrant orange matching your Get Directions button */
+}
