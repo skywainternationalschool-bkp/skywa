@@ -1,18 +1,7 @@
-header {
-  position: fixed; /* हेडर को स्क्रीन पर फिक्स करने के लिए */
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999; /* ताकि यह बाकी कंटेंट के ऊपर दिखाई दे */
-  background: #ffffff; /* पीछे का कंटेंट हेडर के नीचे छिप जाए, इसलिए बैकग्राउंड रंग दें */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* हल्का शैडो इफ़ेक्ट */
-}
-
-/* चूंकि हेडर फिक्स हो चुका है, इसलिए बॉडी पर ऊपर से पैडिंग दें ताकि पेज का पहला कंटेंट हेडर के पीछे न छिपे */
-body {
-  padding-top: 80px; /* आपके हेडर की ऊंचाई के हिसाब से इसे कम या ज्यादा कर सकते हैं */
-}
-
+/* ==========================================================
+   1. GLOBAL VARIABLES & BASE RESETS (रूट वेरिएबल्स और बेसिक सेटिंग्स)
+   काम: पूरी वेबसाइट के रंग (Colors), फोंट और रिसेट सेटिंग्स तय करता है।
+   ========================================================== */
 :root {
   --primary: #123b68;
   --secondary: #f3a51b;
@@ -39,6 +28,7 @@ body {
   color: var(--dark);
   line-height: 1.6;
   background: #fff;
+  padding-top: 80px; /* फिक्स हेडर के नीचे कंटेंट छिपने से बचाने के लिए */
 }
 
 a {
@@ -56,13 +46,19 @@ img {
   margin: auto;
 }
 
+
+/* ==========================================================
+   2. TOPBAR & HEADER NAVIGATION (टॉपबार और हेडर मेनू)
+   काम: सबसे ऊपर की पट्टी, फिक्स हेडर, लोगो और नेविगेशन मेनू के लिए।
+   ========================================================== */
 .topbar {
   background: var(--primary);
   color: #fff;
   font-size: 14px;
 }
 
-.topbar .container {
+.topbar .container,
+.topbar-content {
   min-height: 40px;
   display: flex;
   align-items: center;
@@ -76,16 +72,19 @@ img {
   flex-wrap: wrap;
 }
 
-.top-links a:hover {
+.top-links a:hover,
+.topbar a:hover {
   color: #ffd56a;
 }
 
 header {
-  background: #fff;
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 .nav {
@@ -100,10 +99,6 @@ header {
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-.logo {
-  display: none;
 }
 
 .school-logo {
@@ -152,6 +147,11 @@ nav a.active {
   font-size: 20px;
 }
 
+
+/* ==========================================================
+   3. HERO SECTION & BUTTONS (हीरो बैनर और बटन्स)
+   काम: होमपेज के सबसे बड़े बैनर, मुख्य हेडिंग और बटन्स की डिजाइन के लिए।
+   ========================================================== */
 .hero {
   min-height: 560px;
   background: linear-gradient(
@@ -223,6 +223,11 @@ nav a.active {
   color: var(--primary);
 }
 
+
+/* ==========================================================
+   4. QUICK CARDS, ABOUT & STATISTICS (क्विक कार्ड्स, अबाउट और आंकड़े)
+   काम: हीरो के नीचे वाले 4 क्विक कार्ड्स, स्कूल परिचय और नंबर काउंटर्स के लिए।
+   ========================================================== */
 .quick {
   margin-top: -55px;
   position: relative;
@@ -287,12 +292,6 @@ section {
   margin: 7px 0;
 }
 
-.section-head p {
-  max-width: 680px;
-  margin: auto;
-  color: var(--muted);
-}
-
 .about {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -305,36 +304,7 @@ section {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: var(--shadow);
-  background: url("https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=85")
-    center/cover;
-}
-
-.about h2 {
-  font-size: 37px;
-  color: var(--primary);
-  margin: 8px 0 18px;
-}
-
-.about p {
-  color: var(--muted);
-  margin-bottom: 16px;
-}
-
-.features {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 13px;
-  margin: 25px 0;
-}
-
-.features div {
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.features span {
-  color: #1c9b62;
-  margin-right: 8px;
+  background: url("https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=85") center/cover;
 }
 
 .numbers {
@@ -354,10 +324,11 @@ section {
   color: #ffd15b;
 }
 
-.number p {
-  opacity: 0.85;
-}
 
+/* ==========================================================
+   5. CARDS & NOTICES SECTION (कारد्स और नोटिस बोर्ड)
+   काम: विभिन्न कोर्स/इवेंट कार्ड्स और नोटिस/इवेंट्स पैनल के लिए।
+   ========================================================== */
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -382,24 +353,6 @@ section {
   padding: 23px;
 }
 
-.card-body h3 {
-  color: var(--primary);
-  margin-bottom: 9px;
-}
-
-.card-body p {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.card-link {
-  display: inline-block;
-  color: var(--accent);
-  font-weight: bold;
-  margin-top: 14px;
-  font-size: 14px;
-}
-
 .light {
   background: var(--light);
 }
@@ -415,12 +368,6 @@ section {
   border-radius: 10px;
   padding: 28px;
   box-shadow: var(--shadow);
-}
-
-.panel h3 {
-  color: var(--primary);
-  margin-bottom: 18px;
-  font-size: 23px;
 }
 
 .notice {
@@ -439,74 +386,13 @@ section {
   text-align: center;
   font-weight: 800;
   padding-top: 4px;
-  line-height: 1.15;
 }
 
-.date b {
-  font-size: 19px;
-  display: block;
-}
 
-.notice h4 {
-  font-size: 15px;
-}
-
-.notice p {
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.event {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.event .calendar {
-  width: 55px;
-  height: 60px;
-  background: var(--primary);
-  color: #fff;
-  border-radius: 6px;
-  text-align: center;
-  padding-top: 5px;
-}
-
-.calendar b {
-  display: block;
-  font-size: 20px;
-}
-
-.event h4 {
-  font-size: 15px;
-  color: var(--primary);
-}
-
-.event p {
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.cta {
-  background: linear-gradient(100deg, var(--secondary), #e88213);
-  color: #fff;
-}
-
-.cta .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 30px;
-}
-
-.cta h2 {
-  font-size: 32px;
-}
-
-.cta p {
-  opacity: 0.92;
-}
-
+/* ==========================================================
+   6. GALLERY & LIGHTBOX MODAL (गैलरी स्लाइडर और लाइटबॉक्स)
+   काम: फोटो गैलरी स्लाइडर और फुल-स्क्रीन इमेज ज़ूम व्यू (Lightbox) के लिए।
+   ========================================================== */
 .gallery-slider {
   position: relative;
   max-width: 1000px;
@@ -515,7 +401,6 @@ section {
   border-radius: 12px;
   box-shadow: var(--shadow);
   background: #111;
-  touch-action: pan-y;
 }
 
 .gallery-track {
@@ -535,486 +420,36 @@ section {
   object-fit: cover;
 }
 
-.gallery-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 46px;
-  height: 46px;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 5;
-}
-
-.gallery-arrow:hover {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.gallery-prev {
-  left: 16px;
-}
-
-.gallery-next {
-  right: 16px;
-}
-
-.gallery-dots {
-  position: absolute;
+/* Lightbox Modal */
+.lightbox {
+  position: fixed;
+  top: 0;
   left: 0;
-  right: 0;
-  bottom: 15px;
-  text-align: center;
-  z-index: 5;
-}
-
-.gallery-dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 0 5px;
-  border-radius: 50%;
-  background: #fff;
-  opacity: 0.55;
-  cursor: pointer;
-  border: 0;
-  padding: 0;
-}
-
-.gallery-dot.active {
-  opacity: 1;
-  transform: scale(1.25);
-}
-/* Lightbox Backdrop */
-  .lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-  }
-  
-  .lightbox.open {
-    display: flex;
-  }
-
-  /* Centered Content Wrapper */
-  .lightbox-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 90vw;
-    max-height: 85vh;
-  }
-
-  /* Lightbox Image */
-  .lightbox img {
-    max-width: 80vw;
-    max-height: 85vh;
-    object-fit: contain;
-    border-radius: 6px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
-  }
-
-  /* Close Button (Top Right) */
-  .lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    background: transparent;
-    border: none;
-    color: #ffffff;
-    font-size: 40px;
-    cursor: pointer;
-    z-index: 10002;
-    line-height: 1;
-  }
-
-  /* Left and Right Navigation Buttons */
-  .lightbox-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.6);
-    color: #ffffff;
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    font-size: 22px;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    z-index: 10001;
-  }
-
-  .lightbox-nav:hover {
-    background: #ffffff;
-    color: #000000;
-    border-color: #ffffff;
-  }
-
-  /* Position Prev to the left, Next to the right */
-  .lightbox-prev {
-    left: -70px;
-  }
-
-  .lightbox-next {
-    right: -70px;
-  }
-
-  /* Mobile Responsive Adjustment */
-  @media (max-width: 768px) {
-    .lightbox-prev {
-      left: 10px; /* Bring inside the image boundary on small screens */
-      background: rgba(0, 0, 0, 0.7);
-    }
-    .lightbox-next {
-      right: 10px; /* Bring inside the image boundary on small screens */
-      background: rgba(0, 0, 0, 0.7);
-    }
-  }
-
-.contact {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-}
-
-.contact-box {
-  display: grid;
-  gap: 18px;
-}
-
-.contact-item {
-  display: flex;
-  gap: 15px;
-}
-
-.contact-item .circle {
-  width: 43px;
-  height: 43px;
-  flex: 0 0 43px;
-  border-radius: 50%;
-  background: #eaf1f8;
-  color: var(--primary);
-  display: grid;
-  place-items: center;
-  font-weight: bold;
-}
-
-.contact-item h4 {
-  color: var(--primary);
-}
-
-.contact-item p {
-  font-size: 14px;
-  color: var(--muted);
-}
-
-form {
-  display: grid;
-  gap: 13px;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 13px;
-}
-
-input,
-textarea {
   width: 100%;
-  border: 1px solid #dce3ea;
-  border-radius: 5px;
-  padding: 13px;
-  font: inherit;
-  outline: none;
-}
-
-input:focus,
-textarea:focus {
-  border-color: var(--primary);
-}
-
-textarea {
-  min-height: 125px;
-  resize: vertical;
-}
-
-footer {
-  background: #101d2a;
-  color: #cbd5df;
-  padding: 55px 0 20px;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 35px;
-}
-
-.footer-title {
-  color: #fff;
-  margin-bottom: 16px;
-}
-
-.footer p,
-.footer li {
-  font-size: 13px;
-}
-
-.footer ul {
-  list-style: none;
-  display: grid;
-  gap: 8px;
-}
-
-.footer a:hover {
-  color: #ffd15b;
-}
-
-.social {
-  display: flex;
-  gap: 9px;
-  margin-top: 18px;
-}
-
-.social a {
-  width: 34px;
-  height: 34px;
-  border: 1px solid #506070;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-}
-
-.copyright {
-  border-top: 1px solid #30404f;
-  margin-top: 35px;
-  padding-top: 18px;
-  text-align: center;
-  font-size: 12px;
-}
-
-.find-us-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 0.7fr;
-  gap: 28px;
-  align-items: stretch;
-}
-
-.map-card {
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  min-height: 430px;
-}
-
-.map-card iframe {
-  display: block;
-}
-
-.find-us-info {
-  display: flex;
-  flex-direction: column;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
   justify-content: center;
-  gap: 20px;
-}
-
-.find-us-info .btn {
-  align-self: flex-start;
-  margin-top: 5px;
-}
-
-.social a img {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-  display: block;
-}
-
-.topbar a {
-  color: inherit;
-}
-
-.topbar a:hover {
-  color: #ffd56a;
-}
-
-.contact-item a {
-  color: inherit;
-}
-
-.contact-item a:hover {
-  color: var(--accent);
-}
-
-.footer a[href^="tel:"],
-.footer a[href^="mailto:"] {
-  color: inherit;
-}
-
-.footer a[href^="tel:"]:hover,
-.footer a[href^="mailto:"]:hover {
-  color: #ffd15b;
-}
-
-.topbar-content {
-  min-height: 40px;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  z-index: 10000;
 }
 
-.topbar-left {
-  font-size: 14px;
+.lightbox.open {
+  display: flex;
 }
 
-.topbar-right {
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap;
+.lightbox img {
+  max-width: 80vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
-.pdf-link-btn {
-  background: #7a2e2a;
-  color: #ffffff !important;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 3px 8px;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
 
-.pdf-link-btn:hover {
-  background: #e74c3c;
-  color: #ffffff !important;
-}
-
-@media (max-width: 900px) {
-  nav ul {
-    display: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 78px;
-    background: #fff;
-    padding: 20px;
-    box-shadow: var(--shadow);
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  nav ul.open {
-    display: flex;
-  }
-  .menu-btn {
-    display: block;
-  }
-  .quick-grid,
-  .number-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .about,
-  .notice-grid,
-  .contact {
-    grid-template-columns: 1fr;
-  }
-  .cards {
-    grid-template-columns: 1fr 1fr;
-  }
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 700px) {
-  .gallery-slide {
-    height: 330px;
-  }
-  .gallery-arrow {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
-  .find-us-grid {
-    grid-template-columns: 1fr;
-  }
-  .map-card {
-    min-height: 330px;
-  }
-  .map-card iframe {
-    height: 330px;
-  }
-  .topbar-content {
-    justify-content: center;
-  }
-  .topbar-left {
-    display: none;
-  }
-  .topbar-right {
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 600px) {
-  .topbar .container {
-    justify-content: center;
-  }
-  .top-links {
-    display: none;
-  }
-  .hero {
-    min-height: 540px;
-  }
-  .quick {
-    margin-top: -25px;
-  }
-  .quick-grid,
-  .cards,
-  .number-grid,
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-  .quick-card {
-    border-right: 0;
-    border-bottom: 1px solid #e8edf2;
-  }
-  .about-img {
-    height: 300px;
-  }
-  .features,
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-  .cta .container {
-    display: block;
-    text-align: center;
-  }
-  .cta .btn {
-    margin-top: 20px;
-  }
-  .section-head h2 {
-    font-size: 29px;
-  }
-}
-
-/* Popup Image Modal Styles */
+/* ==========================================================
+   7. POPUP NOTIFICATION MODAL (पॉपअप नोटिफिकेशन मॉडल)
+   काम: पेज लोड होने पर स्क्रीन पर सबसे ऊपर दिखने वाले इमेज पॉपअप के लिए (उच्च z-index)।
+   ========================================================== */
 .popup-modal {
   position: fixed;
   inset: 0;
@@ -1022,7 +457,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100000;
+  z-index: 100000; /* हेडर से भी ऊपर दिखाने के लिए */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -1042,19 +477,6 @@ footer {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-  transform: scale(0.8);
-  transition: transform 0.3s ease;
-}
-
-.popup-modal.show .popup-content {
-  transform: scale(1);
-}
-
-.popup-content img {
-  display: block;
-  width: 100%;
-  max-height: 95vh; /* Limits image height to 85% of viewport height */
-  object-fit: contain;
 }
 
 .popup-close {
@@ -1067,548 +489,99 @@ footer {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  font-size: 22px;
-  line-height: 1;
   cursor: pointer;
   z-index: 10;
-  transition: background 0.2s;
 }
 
-.popup-close:hover {
-  background: var(--accent);
-}
-/* Dropdown Navigation Styling */
-nav ul li.dropdown {
-  position: relative;
+
+/* ==========================================================
+   8. CONTACT FORM & MAP SECTION (कंटेक्ट फॉर्म और गूगल मैप)
+   काम: संपर्क विवरण, फॉर्म इनपुट फील्ड्स और मैप कार्ड की डिजाइन के लिए।
+   ========================================================== */
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
 }
 
-.dropdown-toggle .arrow {
-  font-size: 11px;
-  margin-left: 3px;
-  display: inline-block;
-  transition: transform 0.2s ease;
+.find-us-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 0.7fr;
+  gap: 28px;
+  align-items: stretch;
 }
 
-/* Hidden by default */
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #ffffff;
-  min-width: 190px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  border-radius: 6px;
-  padding: 8px 0;
-  z-index: 1000;
-  list-style: none;
-  flex-direction: column;
-  gap: 0;
-}
-
-.dropdown-menu li {
+input,
+textarea {
   width: 100%;
+  border: 1px solid #dce3ea;
+  border-radius: 5px;
+  padding: 13px;
+  font: inherit;
+  outline: none;
 }
 
-.dropdown-menu a {
-  display: block;
-  padding: 10px 18px;
-  font-size: 13px;
-  color: #263b4f;
-  white-space: nowrap;
-  font-weight: 600;
-  transition: background 0.2s, color 0.2s;
+input:focus,
+textarea:focus {
+  border-color: var(--primary);
 }
 
-.dropdown-menu a:hover {
-  background: var(--light);
-  color: var(--accent);
+
+/* ==========================================================
+   9. FOOTER SECTION (फुटर सेक्शन)
+   काम: वेबसाइट के सबसे नीचे फुटर लिंक्स, सोशल आइकॉन्स और कॉपीराइट के लिए।
+   ========================================================== */
+footer {
+  background: #101d2a;
+  color: #cbd5df;
+  padding: 55px 0 20px;
 }
 
-/* Desktop Hover Interaction */
-@media (min-width: 901px) {
-  nav ul li.dropdown:hover .dropdown-menu {
-    display: flex;
-  }
-  
-  nav ul li.dropdown:hover .arrow {
-    transform: rotate(180deg);
-  }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 35px;
 }
 
-/* Fullscreen or Drawer Mobile Menu Overlay */
-@media (max-width: 900px) {
-  .menu-btn {
-    display: block !important;
-    background: transparent;
-    border: none;
-    font-size: 26px;
-    cursor: pointer;
-    color: #1e3a8a;
-  }
-
-  /* Hidden by default */
-  nav ul#menu {
-    display: none;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 80%;
-    max-width: 320px;
-    height: 100vh;
-    background-color: #8b0000; /* Deep maroon theme matching your image */
-    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.4);
-    padding: 60px 0 20px 0;
-    z-index: 9999;
-    overflow-y: auto;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  /* Active state triggered via toggleMenu() */
-  nav ul#menu.active {
-    display: flex !important;
-  }
-
-  /* Each menu item block */
-  nav ul#menu li {
-    width: 80%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    position: relative;
-  }
-
-  /* Menu text links */
-  nav ul#menu li a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 22px;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  nav ul#menu li a:hover {
-    background-color: rgba(0, 0, 0, 0.15);
-    color: #ffd700;
-  }
-
-  /* Add dropdown indicator arrows to match the reference */
-  nav ul#menu li.dropdown > a::after,
-  nav ul#menu li:has(.dropdown-menu) > a::after {
-    content: "⌄";
-    font-size: 16px;
-    font-weight: bold;
-  }
-
-  /* Close (X) button inside the mobile drawer */
-  .mobile-menu-close {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    background: transparent;
-    border: none;
-    color: #ffffff;
-    font-size: 28px;
-    cursor: pointer;
-    z-index: 10000;
-  }
+.copyright {
+  border-top: 1px solid #30404f;
+  margin-top: 35px;
+  padding-top: 18px;
+  text-align: center;
+  font-size: 12px;
 }
 
-@media (min-width: 901px) {
-  .mobile-menu-close {
-    display: none;
-  }
-}
-/* ==========================================
-   TABLET RESPONSIVE STYLES (768px - 1024px)
-   ========================================== */
-@media (max-width: 1024px) {
-  .container {
-    width: 92%;
-    padding: 0 15px;
-  }
-
-  /* Grid Conversions for Tablets */
-  .quick-grid,
-  .number-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-
-  .about {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .about-img {
-    min-height: 300px;
-    width: 100%;
-  }
-
-  .notice-grid {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .contact {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .map-card iframe {
-    width: 100%;
-  }
-
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-  }
-}
-
-/* ==========================================
-   MOBILE RESPONSIVE STYLES (up to 767px)
-   ========================================== */
-@media (max-width: 767px) {
-  /* Top Bar Adjustment */
-  .topbar-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 6px;
-    font-size: 12px;
-  }
-
-  .topbar-left, 
-  .topbar-right {
-    display: block;
-    width: 100%;
-  }
-
-  /* Header & Navigation Menu */
-  .nav {
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 10px 15px;
-  }
-
-  .menu-btn {
-    display: block;
-    background: transparent;
-    border: none;
-    font-size: 26px;
-    cursor: pointer;
-    color: var(--primary, #1e3a8a);
-  }
-
-  nav ul#menu {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: #ffffff;
-    padding: 15px 0;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    border-top: 1px solid #e2e8f0;
-  }
-
-  nav ul#menu.active {
-    display: flex;
-  }
-
-  nav ul#menu li {
-    width: 100%;
-    text-align: left;
-  }
-
-  nav ul#menu li a {
-    display: block;
-    padding: 10px 20px;
-    font-size: 15px;
-  }
-
-  /* Mobile Dropdown Menu */
-  .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    background: #f8fafc;
-    margin-left: 20px;
-    width: calc(100% - 40px);
-    border-left: 2px solid var(--accent, #3b82f6);
-  }
-
-  .dropdown-menu a {
-    padding: 8px 15px;
-    font-size: 14px;
-  }
-
-  /* Hero Section */
-  .hero {
-    min-height: auto;
-    padding: 50px 0;
-  }
-
-  .hero-content h1 {
-    font-size: 28px;
-    line-height: 1.25;
-  }
-
-  .hero-content p {
-    font-size: 14px;
-  }
-
-  .hero-content .btn {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
-    text-align: center;
-  }
-
-  /* Single Column Layouts */
-  .quick-grid,
-  .number-grid,
-  .cards,
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-
-  .features {
-    grid-template-columns: 1fr;
-  }
-
-  /* Popup Notification Modal */
-  .popup-content {
-    width: 90%;
-    max-width: 340px;
-    margin: 0 auto;
-  }
-
-  .popup-content img {
-    width: 100%;
-    height: auto;
-  }
-}
-/* Mobile Navigation Button & Menu Fix */
-@media (max-width: 767px) {
-  /* Display the hamburger button on mobile screens */
-  .menu-btn {
-    display: block !important;
-    background: transparent;
-    border: none;
-    font-size: 28px;
-    color: #1e3a8a;
-    cursor: pointer;
-    padding: 5px 10px;
-  }
-
-  /* Hide the menu list by default on mobile */
-  nav ul#menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    width: 100%;
-    background-color: #ffffff;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    border-top: 1px solid #e2e8f0;
-    padding: 10px 0;
-    z-index: 999;
-  }
-
-  /* Show the menu list when active class is toggled via JavaScript */
-  nav ul#menu.active {
-    display: flex !important;
-  }
-
-  /* Style mobile link items */
-  nav ul#menu li {
-    width: 100%;
-  }
-
-  nav ul#menu li a {
-    display: block;
-    padding: 12px 20px;
-    color: #263b4f;
-    font-size: 15px;
-    font-weight: 600;
-  }
-}
-
-/* Ensure the hamburger button stays hidden on desktop screens */
-@media (min-width: 768px) {
-  .menu-btn {
-    display: none !important;
-  }
-
-  nav ul#menu {
-    display: flex !important;
-    flex-direction: row;
-  }
-}
-/* Reference Footer Styling matching Green Theme */
+/* Reference Green Footer */
 .footer-ref {
-  background-color: #0d6efd; /* Fallback blue, or use deep school green if preferred, e.g. #0f6838 */
   background: linear-gradient(135deg, #0f6838 0%, #0a4d28 100%);
   color: #ffffff;
-  font-family: inherit;
   margin-top: 40px;
 }
 
-.footer-top-banner {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 25px 0;
-}
 
-.footer-banner-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.footer-logo-area {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.footer-logo-area img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-}
-
-.footer-motto-text {
-  max-width: 750px;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #e2e8f0;
-}
-
-.footer-main-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr;
-  gap: 30px;
-  padding: 40px 20px;
-}
-
-.footer-col-left h3, .footer-col-links h3 {
-  font-size: 18px;
-  margin-bottom: 18px;
-  font-weight: 700;
-  color: #ffffff;
-  border-bottom: 2px solid rgba(255,255,255,0.15);
-  padding-bottom: 8px;
-}
-
-.footer-map-box {
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.btn-get-direction {
-  display: inline-block;
-  background-color: #f97316; /* Orange button matching reference */
-  color: #ffffff;
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 14px;
-  transition: background 0.2s;
-}
-
-.btn-get-direction:hover {
-  background-color: #ea580c;
-}
-
-.footer-social-icons {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.footer-social-icons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: bold;
-  transition: background 0.2s;
-}
-
-.footer-social-icons a:hover {
-  background: #ffffff;
-  color: #0a4d28;
-}
-
-.footer-col-links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-col-links ul li {
-  margin-bottom: 10px;
-}
-
-.footer-col-links ul li a {
-  color: #e2e8f0;
-  text-decoration: none;
-  font-size: 14px;
-  transition: color 0.2s;
-}
-
-.footer-col-links ul li a:hover {
-  color: #fbbf24;
-  padding-left: 4px;
-}
-
-.footer-bottom-bar {
-  background-color: rgba(0, 0, 0, 0.25);
-  padding: 15px 20px;
-  font-size: 13px;
-  color: #cbd5e1;
-}
-
-.footer-bottom-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-/* Responsive adjustments */
+/* ==========================================================
+   10. RESPONSIVE MEDIA QUERIES (मोबाइल और टैबलेट व्यू)
+   काम: टैबलेट और मोबाइल स्क्रीन पर लेआउट को रिस्पोंसिव बनाने के लिए।
+   ========================================================== */
 @media (max-width: 900px) {
-  .footer-main-grid {
-    grid-template-columns: 1fr 1fr;
+  nav ul {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 78px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    flex-direction: column;
   }
-}
-
-@media (max-width: 600px) {
-  .footer-main-grid {
+  nav ul.open, nav ul#menu.active {
+    display: flex;
+  }
+  .menu-btn {
+    display: block;
+  }
+  .quick-grid, .number-grid, .cards, .footer-grid, .about, .notice-grid, .contact {
     grid-template-columns: 1fr;
   }
-  .footer-bottom-flex {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-.footer-bottom-credit strong {
-  color: #f97316; /* Vibrant orange matching your Get Directions button */
 }
