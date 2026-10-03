@@ -159,7 +159,7 @@ header {
 nav ul {
   display: flex;
   list-style: none;
-  gap: 26px;
+  gap: 13px;
   align-items: center;
 }
 
