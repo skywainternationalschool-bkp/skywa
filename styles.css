@@ -1339,7 +1339,6 @@ footer {
     top: 0;
     right: 0;
     width: 80%;
-    max-width: 320px;
     height: 100vh;
     background-color: #8b0000;
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.4);
