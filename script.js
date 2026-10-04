@@ -43,30 +43,31 @@ document.querySelectorAll('#menu a').forEach((a) => {
     }
   });
 });
-// Mobile View Dropdown Toggle Logic
 document.addEventListener("DOMContentLoaded", function() {
-  const dropdownToggles = document.querySelectorAll("nav ul#menu li.dropdown > a, nav ul#menu li.has-dropdown > a");
-  
-  dropdownToggles.forEach(toggle => {
-    toggle.addEventListener("click", function(e) {
-      // Sirf mobile view ke liye (jab hamburger menu active ho)
-      const menu = document.getElementById('menu');
-      if (menu && menu.classList.contains('active')) {
-        e.preventDefault(); // Default link redirect rokein taaki sub-menu khul sake
-        const parentLi = this.parentElement;
-        parentLi.classList.toggle('open-mobile-dropdown');
-        
-        // Next sibling jo dropdown-menu hai use toggle karein
-        const dropdownMenu = parentLi.querySelector('.dropdown-menu');
-        if (dropdownMenu) {
-          if (dropdownMenu.style.display === 'flex' || dropdownMenu.style.display === 'block') {
-            dropdownMenu.style.display = 'none';
+  // Sabhi dropdown items ko select karein jinke andar .dropdown-menu hai
+  const dropdownItems = document.querySelectorAll("nav ul#menu li");
+
+  dropdownItems.forEach(li => {
+    const submenu = li.querySelector('.dropdown-menu');
+    const link = li.querySelector('a');
+
+    if (submenu && link) {
+      link.addEventListener("click", function(e) {
+        // Sirf mobile view (jab hamburger menu active ho) ke liye yeh logic chale
+        const mobileMenu = document.getElementById('menu');
+        if (mobileMenu && mobileMenu.classList.contains('active')) {
+          e.preventDefault(); // Page reload ya link jump hone se rokein
+          
+          // Agar yeh sub-menu pehle se khula hai toh ise band karein, warna kholen
+          if (submenu.style.display === 'flex' || submenu.style.display === 'block') {
+            submenu.style.display = 'none';
           } else {
-            dropdownMenu.style.display = 'flex';
+            // Baaki sabhi open sub-menus ko band kar sakte hain (optional) ya direct toggle
+            submenu.style.display = 'flex';
           }
         }
-      }
-    });
+      });
+    }
   });
 });
 // Unique Visitor Counter
