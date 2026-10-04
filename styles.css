@@ -1704,8 +1704,11 @@ nav ul li.dropdown {
 .footer-bottom-credit strong {
   color: #f97316; /* Vibrant orange matching your Get Directions button */
 }
+/* ==========================================
+   FINAL MOBILE SUB-MENU FIX (Paste at the very bottom)
+   ========================================== */
 @media (max-width: 900px) {
-  /* Shuru mein mobile view mein dropdown chup rahega */
+  /* Mobile view mein default dropdown sub-menu ko hide rakhein */
   nav ul#menu .dropdown-menu {
     display: none !important;
     position: static !important;
@@ -1715,13 +1718,13 @@ nav ul li.dropdown {
     padding-left: 20px !important;
   }
 
-  /* Jab JS class add karegi tab yeh dikhne lagega */
+  /* Jab JavaScript se 'mobile-open' class add ho, tab sub-menu show ho jaye */
   nav ul#menu li.mobile-open > .dropdown-menu {
     display: flex !important;
     flex-direction: column !important;
   }
 
-  /* Optional: Arrow ko rotate karne ke liye */
+  /* Dropdown arrow ko rotate karne ke liye */
   nav ul#menu li.mobile-open > a .arrow {
     transform: rotate(180deg);
   }
