@@ -1,7 +1,18 @@
-/* ==========================================
-   1. ROOT VARIABLES & GLOBAL RESET STYLES
-   (Work: Color variables, box-sizing, html scroll behavior, and global element resets)
-   ========================================== */
+header {
+  position: fixed; /* हेडर को स्क्रीन पर फिक्स करने के लिए */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999; /* ताकि यह बाकी कंटेंट के ऊपर दिखाई दे */
+  background: #ffffff; /* पीछे का कंटेंट हेडर के नीचे छिप जाए, इसलिए बैकग्राउंड रंग दें */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* हल्का शैडो इफ़ेक्ट */
+}
+
+/* चूंकि हेडर फिक्स हो चुका है, इसलिए बॉडी पर ऊपर से पैडिंग दें ताकि पेज का पहला कंटेंट हेडर के पीछे न छिपे */
+body {
+  padding-top: 80px; /* आपके हेडर की ऊंचाई के हिसाब से इसे कम या ज्यादा कर सकते हैं */
+}
+
 :root {
   --primary: #123b68;
   --secondary: #f3a51b;
@@ -28,7 +39,6 @@ body {
   color: var(--dark);
   line-height: 1.6;
   background: #fff;
-  padding-top: 80px; /* आपके हेडर की ऊंचाई के हिसाब से पैडिंग */
 }
 
 a {
@@ -46,15 +56,6 @@ img {
   margin: auto;
 }
 
-section {
-  padding: 82px 0;
-}
-
-
-/* ==========================================
-   2. TOPBAR SECTION STYLES
-   (Work: Styling the top notification bar above the main header)
-   ========================================== */
 .topbar {
   background: var(--primary);
   color: #fff;
@@ -79,45 +80,12 @@ section {
   color: #ffd56a;
 }
 
-.topbar a {
-  color: inherit;
-}
-
-.topbar a:hover {
-  color: #ffd56a;
-}
-
-.topbar-content {
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.topbar-left {
-  font-size: 14px;
-}
-
-.topbar-right {
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-
-/* ==========================================
-   3. HEADER & NAVIGATION STYLES
-   (Work: Fixed/sticky header, brand logo, desktop & mobile menu layout)
-   ========================================== */
 header {
-  position: fixed; /* हेडर को स्क्रीन पर फिक्स करने के लिए */
+  background: #fff;
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999; /* ताकि यह बाकी कंटेंट के ऊपर दिखाई दे */
-  background: #ffffff; /* पीछे का कंटेंट हेडर के नीचे छिप जाए */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* हल्का शैडो इफ़ेक्ट */
+  z-index: 1000;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
 }
 
 .nav {
@@ -159,7 +127,7 @@ header {
 nav ul {
   display: flex;
   list-style: none;
-  gap: 13px;
+  gap: 26px;
   align-items: center;
 }
 
@@ -182,118 +150,8 @@ nav a.active {
   padding: 10px 13px;
   border-radius: 5px;
   font-size: 20px;
-  cursor: pointer;
 }
 
-
-/* ==========================================
-   4. DROPDOWN NAVIGATION STYLES
-   (Work: Sub-menus and dropdown interactions for navigation items)
-   ========================================== */
-nav ul li.dropdown {
-  position: relative;
-}
-
-.dropdown-toggle {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.dropdown-toggle .arrow {
-  font-size: 11px;
-  margin-left: 3px;
-  display: inline-block;
-  transition: transform 0.2s ease;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #ffffff;
-  min-width: 190px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  border-radius: 6px;
-  padding: 8px 0;
-  z-index: 1000;
-  list-style: none;
-  flex-direction: column;
-  gap: 0;
-  margin-top: 8px;
-}
-
-.dropdown-menu.show {
-  display: flex;
-}
-
-.dropdown-menu li {
-  width: 100%;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 10px 18px;
-  font-size: 13px;
-  color: #263b4f;
-  white-space: nowrap;
-  font-weight: 600;
-  transition: background 0.2s, color 0.2s;
-}
-
-.dropdown-menu a:hover {
-  background: var(--light);
-  color: var(--accent);
-}
-
-@media (min-width: 901px) {
-  nav ul li.dropdown:hover .dropdown-menu {
-    display: flex;
-  }
-  
-  nav ul li.dropdown:hover .arrow {
-    transform: rotate(180deg);
-  }
-}
-
-/* Mobile dropdown styles */
-@media (max-width: 900px) {
-  .dropdown-toggle {
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .dropdown-toggle .arrow {
-    display: inline-block;
-  }
-
-  .dropdown-toggle.active .arrow {
-    transform: rotate(180deg);
-  }
-
-  .dropdown-menu {
-    position: static;
-    background: #f5f8fc;
-    box-shadow: none;
-    border-radius: 0;
-    padding: 8px 0;
-    margin-top: 0;
-    border-top: 1px solid #e8edf2;
-    min-width: auto;
-  }
-
-  .dropdown-menu a {
-    padding: 12px 24px;
-    padding-left: 32px;
-  }
-}
-
-
-/* ==========================================
-   5. HERO SECTION STYLES
-   (Work: Main banner background, hero headings, and action buttons)
-   ========================================== */
 .hero {
   min-height: 560px;
   background: linear-gradient(
@@ -365,11 +223,6 @@ nav ul li.dropdown {
   color: var(--primary);
 }
 
-
-/* ==========================================
-   6. QUICK CARDS SECTION STYLES
-   (Work: Overlapping quick links/features cards right below the hero banner)
-   ========================================== */
 .quick {
   margin-top: -55px;
   position: relative;
@@ -411,11 +264,10 @@ nav ul li.dropdown {
   color: var(--muted);
 }
 
+section {
+  padding: 82px 0;
+}
 
-/* ==========================================
-   7. SECTION HEADINGS & COMMON COMPONENTS
-   (Work: Global section title styling and tags)
-   ========================================== */
 .section-head {
   text-align: center;
   margin-bottom: 45px;
@@ -441,11 +293,6 @@ nav ul li.dropdown {
   color: var(--muted);
 }
 
-
-/* ==========================================
-   8. ABOUT SECTION STYLES
-   (Work: School introduction layout, image, and bullet features)
-   ========================================== */
 .about {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -490,11 +337,6 @@ nav ul li.dropdown {
   margin-right: 8px;
 }
 
-
-/* ==========================================
-   9. STATISTICS / NUMBERS SECTION STYLES
-   (Work: Displaying school achievements and statistics in numbers)
-   ========================================== */
 .numbers {
   background: var(--primary);
   color: #fff;
@@ -516,11 +358,6 @@ nav ul li.dropdown {
   opacity: 0.85;
 }
 
-
-/* ==========================================
-   10. CARDS / SERVICES SECTION STYLES
-   (Work: Grid layout for programs, services, or general cards)
-   ========================================== */
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -567,11 +404,6 @@ nav ul li.dropdown {
   background: var(--light);
 }
 
-
-/* ==========================================
-   11. NOTICE BOARD & EVENTS SECTION STYLES
-   (Work: Latest notices, school updates, and upcoming events layout)
-   ========================================== */
 .notice-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -655,11 +487,6 @@ nav ul li.dropdown {
   color: var(--muted);
 }
 
-
-/* ==========================================
-   12. CALL TO ACTION (CTA) SECTION STYLES
-   (Work: Promotional banner encouraging user action or admission)
-   ========================================== */
 .cta {
   background: linear-gradient(100deg, var(--secondary), #e88213);
   color: #fff;
@@ -680,11 +507,6 @@ nav ul li.dropdown {
   opacity: 0.92;
 }
 
-
-/* ==========================================
-   13. GALLERY SLIDER STYLES
-   (Work: Photo slider track, slides, navigation arrows, and dots indicator)
-   ========================================== */
 .gallery-slider {
   position: relative;
   max-width: 1000px;
@@ -766,108 +588,104 @@ nav ul li.dropdown {
   opacity: 1;
   transform: scale(1.25);
 }
+/* Lightbox Backdrop */
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  }
+  
+  .lightbox.open {
+    display: flex;
+  }
 
+  /* Centered Content Wrapper */
+  .lightbox-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 90vw;
+    max-height: 85vh;
+  }
 
-/* ==========================================
-   14. LIGHTBOX MODAL STYLES
-   (Work: Fullscreen image preview popup with navigation controls)
-   ========================================== */
-.lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-}
+  /* Lightbox Image */
+  .lightbox img {
+    max-width: 80vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+  }
 
-.lightbox.open {
-  display: flex;
-}
+  /* Close Button (Top Right) */
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 10002;
+    line-height: 1;
+  }
 
-.lightbox-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 90vw;
-  max-height: 85vh;
-}
+  /* Left and Right Navigation Buttons */
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    font-size: 22px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10001;
+  }
 
-.lightbox img {
-  max-width: 80vw;
-  max-height: 85vh;
-  object-fit: contain;
-  border-radius: 6px;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.5);
-}
+  .lightbox-nav:hover {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+  }
 
-.lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  font-size: 40px;
-  cursor: pointer;
-  z-index: 10002;
-  line-height: 1;
-}
-
-.lightbox-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  font-size: 22px;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  z-index: 10001;
-}
-
-.lightbox-nav:hover {
-  background: #ffffff;
-  color: #000000;
-  border-color: #ffffff;
-}
-
-.lightbox-prev {
-  left: -70px;
-}
-
-.lightbox-next {
-  right: -70px;
-}
-
-@media (max-width: 768px) {
+  /* Position Prev to the left, Next to the right */
   .lightbox-prev {
-    left: 10px;
-    background: rgba(0, 0, 0, 0.7);
+    left: -70px;
   }
+
   .lightbox-next {
-    right: 10px;
-    background: rgba(0, 0, 0, 0.7);
+    right: -70px;
   }
-}
 
+  /* Mobile Responsive Adjustment */
+  @media (max-width: 768px) {
+    .lightbox-prev {
+      left: 10px; /* Bring inside the image boundary on small screens */
+      background: rgba(0, 0, 0, 0.7);
+    }
+    .lightbox-next {
+      right: 10px; /* Bring inside the image boundary on small screens */
+      background: rgba(0, 0, 0, 0.7);
+    }
+  }
 
-/* ==========================================
-   15. CONTACT US & FORM STYLES
-   (Work: Contact details layout, input fields, and submission form)
-   ========================================== */
 .contact {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -905,14 +723,6 @@ nav ul li.dropdown {
   color: var(--muted);
 }
 
-.contact-item a {
-  color: inherit;
-}
-
-.contact-item a:hover {
-  color: var(--accent);
-}
-
 form {
   display: grid;
   gap: 13px;
@@ -944,11 +754,61 @@ textarea {
   resize: vertical;
 }
 
+footer {
+  background: #101d2a;
+  color: #cbd5df;
+  padding: 55px 0 20px;
+}
 
-/* ==========================================
-   16. MAP & LOCATION SECTION STYLES
-   (Work: Google map display card and directions info layout)
-   ========================================== */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 35px;
+}
+
+.footer-title {
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.footer p,
+.footer li {
+  font-size: 13px;
+}
+
+.footer ul {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.footer a:hover {
+  color: #ffd15b;
+}
+
+.social {
+  display: flex;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.social a {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #506070;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.copyright {
+  border-top: 1px solid #30404f;
+  margin-top: 35px;
+  padding-top: 18px;
+  text-align: center;
+  font-size: 12px;
+}
+
 .find-us-grid {
   display: grid;
   grid-template-columns: 1.5fr 0.7fr;
@@ -980,11 +840,181 @@ textarea {
   margin-top: 5px;
 }
 
+.social a img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+}
 
-/* ==========================================
-   17. POPUP NOTIFICATION MODAL STYLES
-   (Work: Pop-up alert/announcement modal displayed on page load)
-   ========================================== */
+.topbar a {
+  color: inherit;
+}
+
+.topbar a:hover {
+  color: #ffd56a;
+}
+
+.contact-item a {
+  color: inherit;
+}
+
+.contact-item a:hover {
+  color: var(--accent);
+}
+
+.footer a[href^="tel:"],
+.footer a[href^="mailto:"] {
+  color: inherit;
+}
+
+.footer a[href^="tel:"]:hover,
+.footer a[href^="mailto:"]:hover {
+  color: #ffd15b;
+}
+
+.topbar-content {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.topbar-left {
+  font-size: 14px;
+}
+
+.topbar-right {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pdf-link-btn {
+  background: #7a2e2a;
+  color: #ffffff !important;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.pdf-link-btn:hover {
+  background: #e74c3c;
+  color: #ffffff !important;
+}
+
+@media (max-width: 900px) {
+  nav ul {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 78px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav ul.open {
+    display: flex;
+  }
+  .menu-btn {
+    display: block;
+  }
+  .quick-grid,
+  .number-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .about,
+  .notice-grid,
+  .contact {
+    grid-template-columns: 1fr;
+  }
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .gallery-slide {
+    height: 330px;
+  }
+  .gallery-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  .find-us-grid {
+    grid-template-columns: 1fr;
+  }
+  .map-card {
+    min-height: 330px;
+  }
+  .map-card iframe {
+    height: 330px;
+  }
+  .topbar-content {
+    justify-content: center;
+  }
+  .topbar-left {
+    display: none;
+  }
+  .topbar-right {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 600px) {
+  .topbar .container {
+    justify-content: center;
+  }
+  .top-links {
+    display: none;
+  }
+  .hero {
+    min-height: 540px;
+  }
+  .quick {
+    margin-top: -25px;
+  }
+  .quick-grid,
+  .cards,
+  .number-grid,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .quick-card {
+    border-right: 0;
+    border-bottom: 1px solid #e8edf2;
+  }
+  .about-img {
+    height: 300px;
+  }
+  .features,
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .cta .container {
+    display: block;
+    text-align: center;
+  }
+  .cta .btn {
+    margin-top: 20px;
+  }
+  .section-head h2 {
+    font-size: 29px;
+  }
+}
+
+/* Popup Image Modal Styles */
 .popup-modal {
   position: fixed;
   inset: 0;
@@ -1023,7 +1053,7 @@ textarea {
 .popup-content img {
   display: block;
   width: 100%;
-  max-height: 95vh;
+  max-height: 95vh; /* Limits image height to 85% of viewport height */
   object-fit: contain;
 }
 
@@ -1045,82 +1075,166 @@ textarea {
 }
 
 .popup-close:hover {
-  background: rgba(0, 0, 0, 0.9);
+  background: var(--accent);
+}
+/* Dropdown Navigation Styling */
+nav ul li.dropdown {
+  position: relative;
 }
 
+.dropdown-toggle .arrow {
+  font-size: 11px;
+  margin-left: 3px;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
 
-/* ==========================================
-   18. RESPONSIVE DESIGN
-   (Work: Mobile-first responsive layouts)
-   ========================================== */
+/* Hidden by default */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  min-width: 190px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  padding: 8px 0;
+  z-index: 1000;
+  list-style: none;
+  flex-direction: column;
+  gap: 0;
+}
 
-@media (max-width: 768px) {
-  body {
-    padding-top: 60px;
+.dropdown-menu li {
+  width: 100%;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 18px;
+  font-size: 13px;
+  color: #263b4f;
+  white-space: nowrap;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background: var(--light);
+  color: var(--accent);
+}
+
+/* Desktop Hover Interaction */
+@media (min-width: 901px) {
+  nav ul li.dropdown:hover .dropdown-menu {
+    display: flex;
   }
-
-  .nav {
-    min-height: 60px;
+  
+  nav ul li.dropdown:hover .arrow {
+    transform: rotate(180deg);
   }
+}
 
-  .school-logo {
-    width: 60px;
-    height: 60px;
-  }
-
-  .brand strong {
-    font-size: 16px;
-  }
-
-  nav ul {
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background: #fff;
-    padding: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    gap: 0;
-    width: 100%;
-  }
-
-  nav ul.active {
-    max-height: 500px;
-  }
-
-  nav ul li {
-    width: 100%;
-    border-bottom: 1px solid #e8edf2;
-  }
-
-  nav a {
-    display: block;
-    padding: 14px 20px;
-    font-size: 14px;
-  }
-
+/* Fullscreen or Drawer Mobile Menu Overlay */
+@media (max-width: 900px) {
   .menu-btn {
-    display: block;
+    display: block !important;
+    background: transparent;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: #1e3a8a;
   }
 
-  .quick-grid {
+  /* Hidden by default */
+  nav ul#menu {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background-color: #8b0000; /* Deep maroon theme matching your image */
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.4);
+    padding: 60px 0 20px 0;
+    z-index: 9999;
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  /* Active state triggered via toggleMenu() */
+  nav ul#menu.active {
+    display: flex !important;
+  }
+
+  /* Each menu item block */
+  nav ul#menu li {
+    width: 80%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+  }
+
+  /* Menu text links */
+  nav ul#menu li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 22px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  nav ul#menu li a:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+    color: #ffd700;
+  }
+
+  /* Add dropdown indicator arrows to match the reference */
+  nav ul#menu li.dropdown > a::after,
+  nav ul#menu li:has(.dropdown-menu) > a::after {
+    content: "⌄";
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  /* Close (X) button inside the mobile drawer */
+  .mobile-menu-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 10000;
+  }
+}
+
+@media (min-width: 901px) {
+  .mobile-menu-close {
+    display: none;
+  }
+}
+/* ==========================================
+   TABLET RESPONSIVE STYLES (768px - 1024px)
+   ========================================== */
+@media (max-width: 1024px) {
+  .container {
+    width: 92%;
+    padding: 0 15px;
+  }
+
+  /* Grid Conversions for Tablets */
+  .quick-grid,
+  .number-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .quick-card {
-    border-right: none;
-    border-bottom: 1px solid #e8edf2;
-  }
-
-  .quick-card:nth-child(2n) {
-    border-right: none;
-  }
-
-  .quick-card:nth-last-child(-n+2) {
-    border-bottom: none;
+    gap: 15px;
   }
 
   .about {
@@ -1129,39 +1243,372 @@ textarea {
   }
 
   .about-img {
-    height: 300px;
-  }
-
-  .number-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .cards {
-    grid-template-columns: 1fr;
+    min-height: 300px;
+    width: 100%;
   }
 
   .notice-grid {
     grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .contact {
     grid-template-columns: 1fr;
+    gap: 30px;
   }
 
-  .form-row {
-    grid-template-columns: 1fr;
+  .map-card iframe {
+    width: 100%;
   }
 
-  .find-us-grid {
-    grid-template-columns: 1fr;
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
+}
 
-  .cta .container {
+/* ==========================================
+   MOBILE RESPONSIVE STYLES (up to 767px)
+   ========================================== */
+@media (max-width: 767px) {
+  /* Top Bar Adjustment */
+  .topbar-content {
     flex-direction: column;
     text-align: center;
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .topbar-left, 
+  .topbar-right {
+    display: block;
+    width: 100%;
+  }
+
+  /* Header & Navigation Menu */
+  .nav {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 15px;
+  }
+
+  .menu-btn {
+    display: block;
+    background: transparent;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--primary, #1e3a8a);
+  }
+
+  nav ul#menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #ffffff;
+    padding: 15px 0;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #e2e8f0;
+  }
+
+  nav ul#menu.active {
+    display: flex;
+  }
+
+  nav ul#menu li {
+    width: 100%;
+    text-align: left;
+  }
+
+  nav ul#menu li a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+
+  /* Mobile Dropdown Menu */
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    background: #f8fafc;
+    margin-left: 20px;
+    width: calc(100% - 40px);
+    border-left: 2px solid var(--accent, #3b82f6);
+  }
+
+  .dropdown-menu a {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  /* Hero Section */
+  .hero {
+    min-height: auto;
+    padding: 50px 0;
+  }
+
+  .hero-content h1 {
+    font-size: 28px;
+    line-height: 1.25;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  .hero-content .btn {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  /* Single Column Layouts */
+  .quick-grid,
+  .number-grid,
+  .cards,
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
 
   .features {
     grid-template-columns: 1fr;
   }
+
+  /* Popup Notification Modal */
+  .popup-content {
+    width: 90%;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  .popup-content img {
+    width: 100%;
+    height: auto;
+  }
+}
+/* Mobile Navigation Button & Menu Fix */
+@media (max-width: 767px) {
+  /* Display the hamburger button on mobile screens */
+  .menu-btn {
+    display: block !important;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    color: #1e3a8a;
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+
+  /* Hide the menu list by default on mobile */
+  nav ul#menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #e2e8f0;
+    padding: 10px 0;
+    z-index: 999;
+  }
+
+  /* Show the menu list when active class is toggled via JavaScript */
+  nav ul#menu.active {
+    display: flex !important;
+  }
+
+  /* Style mobile link items */
+  nav ul#menu li {
+    width: 100%;
+  }
+
+  nav ul#menu li a {
+    display: block;
+    padding: 12px 20px;
+    color: #263b4f;
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
+
+/* Ensure the hamburger button stays hidden on desktop screens */
+@media (min-width: 768px) {
+  .menu-btn {
+    display: none !important;
+  }
+
+  nav ul#menu {
+    display: flex !important;
+    flex-direction: row;
+  }
+}
+/* Reference Footer Styling matching Green Theme */
+.footer-ref {
+  background-color: #0d6efd; /* Fallback blue, or use deep school green if preferred, e.g. #0f6838 */
+  background: linear-gradient(135deg, #0f6838 0%, #0a4d28 100%);
+  color: #ffffff;
+  font-family: inherit;
+  margin-top: 40px;
+}
+
+.footer-top-banner {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 25px 0;
+}
+
+.footer-banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-logo-area img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.footer-motto-text {
+  max-width: 750px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+.footer-main-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  gap: 30px;
+  padding: 40px 20px;
+}
+
+.footer-col-left h3, .footer-col-links h3 {
+  font-size: 18px;
+  margin-bottom: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  border-bottom: 2px solid rgba(255,255,255,0.15);
+  padding-bottom: 8px;
+}
+
+.footer-map-box {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.btn-get-direction {
+  display: inline-block;
+  background-color: #f97316; /* Orange button matching reference */
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.btn-get-direction:hover {
+  background-color: #ea580c;
+}
+
+.footer-social-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.footer-social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.footer-social-icons a:hover {
+  background: #ffffff;
+  color: #0a4d28;
+}
+
+.footer-col-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col-links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-col-links ul li a {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.footer-col-links ul li a:hover {
+  color: #fbbf24;
+  padding-left: 4px;
+}
+
+.footer-bottom-bar {
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 15px 20px;
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+.footer-bottom-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .footer-main-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-main-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+.footer-bottom-credit strong {
+  color: #f97316; /* Vibrant orange matching your Get Directions button */
 }
