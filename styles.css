@@ -10,7 +10,7 @@ header {
 
 /* चूंकि हेडर फिक्स हो चुका है, इसलिए बॉडी पर ऊपर से पैडिंग दें ताकि पेज का पहला कंटेंट हेडर के पीछे न छिपे */
 body {
-  padding-top: 80px; /* आपके हेडर की ऊंचाई के हिसाब से इसे कम या ज्यादा कर सकते हैं */
+  padding-top: 100px; /* आपके हेडर की ऊंचाई के हिसाब से इसे कम या ज्यादा कर सकते हैं */
 }
 
 :root {
@@ -38,7 +38,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color: var(--dark);
   line-height: 1.6;
-  background: #fff;
+  background: #cae8f7;
 }
 
 a {
