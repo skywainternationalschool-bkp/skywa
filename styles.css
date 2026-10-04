@@ -1081,8 +1081,8 @@ nav ul li.dropdown {
 }
 
 .dropdown-toggle .arrow {
-  font-size: 20px;
-  margin-left: 45px;
+  font-size: 17px;
+  margin-left: 5px;
   display: inline-block;
   transition: transform 0.2s ease;
 }
