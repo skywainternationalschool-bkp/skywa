@@ -119,8 +119,9 @@ header {
 }
 
 .brand small {
-  color: var(--muted);
-  font-size: 11px;
+  color: #0231e3;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.8px;
 }
 
@@ -1611,4 +1612,27 @@ nav ul li.dropdown {
 }
 .footer-bottom-credit strong {
   color: #f97316; /* Vibrant orange matching your Get Directions button */
+}
+
+@media (max-width: 900px) {
+  /* Shuru mein mobile view mein dropdown chup rahega */
+  nav ul#menu .dropdown-menu {
+    display: none !important;
+    position: static !important;
+    box-shadow: none !important;
+    background: #09f1ea !important;
+    width: 100% !important;
+    padding-left: 20px !important;
+  }
+
+  /* Jab JS class add karegi tab yeh dikhne lagega */
+  nav ul#menu li.mobile-open > .dropdown-menu {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Optional: Arrow ko rotate karne ke liye */
+  nav ul#menu li.mobile-open > a .arrow {
+    transform: rotate(180deg);
+  }
 }
