@@ -32,66 +32,27 @@ function toggleMenu() {
   }
 }
 
-// Automatically close the mobile menu when any link inside it is clicked
-document.querySelectorAll('#menu a').forEach((a) => {
-  a.addEventListener('click', (e) => {
-    // If it's a dropdown toggle on mobile, let it toggle subitems instead of closing if desired, 
-    // otherwise close the full menu drawer
-    const menu = document.getElementById('menu');
-    if (menu) {
-      menu.classList.remove('active');
+// Mobile View Dropdown Fix using Event Delegation (Since header is loaded via fetch)
+document.addEventListener("click", function(e) {
+  // Check karein ki click kisi dropdown toggle link par hua hai ya nahi
+  const targetLink = e.target.closest("nav ul#menu li.dropdown > a, nav ul#menu li.has-dropdown > a, nav ul#menu li > a");
+  
+  if (targetLink) {
+    const mobileMenu = document.getElementById('menu');
+    // Agar mobile menu active hai
+    if (mobileMenu && mobileMenu.classList.contains('active') && window.innerWidth <= 900) {
+      const parentLi = targetLink.parentElement;
+      const submenu = parentLi.querySelector('.dropdown-menu');
+      
+      // Agar is li ke andar sub-menu maujood hai, toh link ko redirect hone se rokein aur toggle karein
+      if (submenu) {
+        e.preventDefault();
+        parentLi.classList.toggle('mobile-open');
+      }
     }
-  });
-});
-document.addEventListener("DOMContentLoaded", function() {
-  // Sabhi dropdown items ko select karein jinke andar .dropdown-menu hai
-  const dropdownItems = document.querySelectorAll("nav ul#menu li");
-
-  dropdownItems.forEach(li => {
-    const submenu = li.querySelector('.dropdown-menu');
-    const link = li.querySelector('a');
-
-    if (submenu && link) {
-      link.addEventListener("click", function(e) {
-        // Sirf mobile view (jab hamburger menu active ho) ke liye yeh logic chale
-        const mobileMenu = document.getElementById('menu');
-        if (mobileMenu && mobileMenu.classList.contains('active')) {
-          e.preventDefault(); // Page reload ya link jump hone se rokein
-          
-          // Agar yeh sub-menu pehle se khula hai toh ise band karein, warna kholen
-          if (submenu.style.display === 'flex' || submenu.style.display === 'block') {
-            submenu.style.display = 'none';
-          } else {
-            // Baaki sabhi open sub-menus ko band kar sakte hain (optional) ya direct toggle
-            submenu.style.display = 'flex';
-          }
-        }
-      });
-    }
-  });
+  }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-  const dropdownToggles = document.querySelectorAll("nav ul#menu li.dropdown > a, nav ul#menu li.has-dropdown > a, nav ul#menu li > a");
-
-  dropdownToggles.forEach(link => {
-    const parentLi = link.parentElement;
-    const submenu = parentLi.querySelector('.dropdown-menu');
-
-    if (submenu) {
-      link.addEventListener("click", function(e) {
-        // Sirf mobile view ke liye
-        const mobileMenu = document.getElementById('menu');
-        if (mobileMenu && window.innerWidth <= 900) {
-          e.preventDefault(); // Link khulne se rokein
-          
-          // Baaki sabhi sub-menus band kar dein aur isse toggle karein
-          parentLi.classList.toggle('mobile-open');
-        }
-      });
-    }
-  });
-});
 
 // Unique Visitor Counter
 async function countUniqueVisitor() {
