@@ -119,8 +119,9 @@ header {
 }
 
 .brand small {
-  color: var(--muted);
-  font-size: 11px;
+  color: #0231e3;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.8px;
 }
 
