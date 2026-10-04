@@ -4,10 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
   if (headerPlaceholder) {
     fetch('header.html')
       .then(response => response.text())
-      .then(data => { 
-        headerPlaceholder.innerHTML = data;
-        initializeMobileDropdowns();
-      })
+      .then(data => { headerPlaceholder.innerHTML = data; })
       .catch(error => console.error('Error loading header:', error));
   }
 
@@ -17,11 +14,12 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch('footer.html')
       .then(response => response.text())
       .then(data => { footerPlaceholder.innerHTML = data; 
-        const yearSpan = document.getElementById('year');
-        if (yearSpan) {
-          yearSpan.textContent = new Date().getFullYear();
-        }
-      })
+  // Yahan current year automatic set ho jayega
+      const yearSpan = document.getElementById('year');
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+    })
       .catch(error => console.error('Error loading footer:', error));
   }
 });
@@ -34,52 +32,17 @@ function toggleMenu() {
   }
 }
 
-// Initialize mobile dropdown toggles
-function initializeMobileDropdowns() {
-  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-
-  dropdownToggles.forEach((toggle) => {
-    toggle.addEventListener('click', function(e) {
-      // Only handle dropdowns on mobile
-      if (window.innerWidth > 900) return;
-
-      // Check if this toggle has a dropdown menu
-      const parentDropdown = this.closest('.dropdown');
-      const dropdownMenu = parentDropdown ? parentDropdown.querySelector('.dropdown-menu') : null;
-      
-      if (!dropdownMenu) return;
-
-      e.preventDefault();
-      e.stopPropagation();
-
-      const isOpen = this.classList.contains('active');
-
-      // Close all other dropdowns
-      document.querySelectorAll('.dropdown-toggle.active').forEach((otherToggle) => {
-        if (otherToggle !== this) {
-          otherToggle.classList.remove('active');
-          const otherMenu = otherToggle.closest('.dropdown')?.querySelector('.dropdown-menu');
-          if (otherMenu) otherMenu.classList.remove('show');
-        }
-      });
-
-      // Toggle current dropdown
-      this.classList.toggle('active', !isOpen);
-      dropdownMenu.classList.toggle('show', !isOpen);
-    });
+// Automatically close the mobile menu when any link inside it is clicked
+document.querySelectorAll('#menu a').forEach((a) => {
+  a.addEventListener('click', (e) => {
+    // If it's a dropdown toggle on mobile, let it toggle subitems instead of closing if desired, 
+    // otherwise close the full menu drawer
+    const menu = document.getElementById('menu');
+    if (menu) {
+      menu.classList.remove('active');
+    }
   });
-
-  // Close menu when clicking on non-dropdown links
-  const menuLinks = document.querySelectorAll('#menu a:not(.dropdown-toggle)');
-  menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      const menu = document.getElementById('menu');
-      if (menu) {
-        menu.classList.remove('active');
-      }
-    });
-  });
-}
+});
 
 // Unique Visitor Counter
 async function countUniqueVisitor() {
@@ -215,7 +178,6 @@ function closeLightbox(e) {
   if (e && e.target && (e.target.id === 'lightboxImg' || e.target.classList.contains('lightbox-nav'))) return;
   document.getElementById('lightbox').classList.remove('open');
 }
-
 // Live Visitor Local Date & Time Display
 function updateVisitorDateTime() {
   const visitorElement = document.getElementById("visitorDateTime");

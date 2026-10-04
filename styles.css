@@ -28,7 +28,7 @@ body {
   color: var(--dark);
   line-height: 1.6;
   background: #fff;
-  padding-top: 80px;
+  padding-top: 80px; /* आपके हेडर की ऊंचाई के हिसाब से पैडिंग */
 }
 
 a {
@@ -111,13 +111,13 @@ section {
    (Work: Fixed/sticky header, brand logo, desktop & mobile menu layout)
    ========================================== */
 header {
-  position: fixed;
+  position: fixed; /* हेडर को स्क्रीन पर फिक्स करने के लिए */
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 9999;
-  background: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  z-index: 9999; /* ताकि यह बाकी कंटेंट के ऊपर दिखाई दे */
+  background: #ffffff; /* पीछे का कंटेंट हेडर के नीचे छिप जाए */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* हल्का शैडो इफ़ेक्ट */
 }
 
 .nav {
@@ -183,7 +183,6 @@ nav a.active {
   border-radius: 5px;
   font-size: 20px;
   cursor: pointer;
-  z-index: 100;
 }
 
 
@@ -260,48 +259,9 @@ nav ul li.dropdown {
 
 /* Mobile dropdown styles */
 @media (max-width: 900px) {
-  .menu-btn {
-    display: block;
-  }
-
-  nav ul#menu {
-    display: none;
-    position: fixed;
-    top: 160px;
-    left: 0;
-    width: 100%;
-    flex-direction: column;
-    background: #ffffff;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    max-height: calc(100vh - 160px);
-    overflow-y: auto;
-    z-index: 99;
-    gap: 0;
-    padding: 15px 0;
-  }
-
-  nav ul#menu.active {
-    display: flex;
-  }
-
-  nav ul#menu li {
-    width: 100%;
-  }
-
-  nav ul#menu li a {
-    display: block;
-    padding: 12px 20px;
-    border: none;
-  }
-
   .dropdown-toggle {
     cursor: pointer;
     user-select: none;
-    width: 100%;
-    padding: 12px 20px;
-    margin: 0;
-    background: transparent;
-    border: none;
   }
 
   .dropdown-toggle .arrow {
@@ -321,19 +281,887 @@ nav ul li.dropdown {
     margin-top: 0;
     border-top: 1px solid #e8edf2;
     min-width: auto;
-    display: none;
-  }
-
-  .dropdown-menu.show {
-    display: flex;
   }
 
   .dropdown-menu a {
     padding: 12px 24px;
-    padding-left: 40px;
+    padding-left: 32px;
+  }
+}
+
+
+/* ==========================================
+   5. HERO SECTION STYLES
+   (Work: Main banner background, hero headings, and action buttons)
+   ========================================== */
+.hero {
+  min-height: 560px;
+  background: linear-gradient(
+      90deg,
+      rgba(9, 36, 65, 0.86),
+      rgba(9, 36, 65, 0.45),
+      rgba(9, 36, 65, 0.1)
+    ),
+    url("skywa-school-assets/Future1.png") center/cover;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.hero-content {
+  max-width: 680px;
+  padding: 70px 0;
+}
+
+.eyebrow {
+  display: inline-block;
+  background: var(--secondary);
+  padding: 7px 15px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 5vw, 66px);
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+
+.hero p {
+  font-size: 18px;
+  max-width: 600px;
+  margin-bottom: 28px;
+  color: #eef5fb;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 23px;
+  border-radius: 5px;
+  font-weight: 700;
+  margin-right: 9px;
+  transition: 0.2s;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #d98d08;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.btn-outline:hover {
+  background: #fff;
+  color: var(--primary);
+}
+
+
+/* ==========================================
+   6. QUICK CARDS SECTION STYLES
+   (Work: Overlapping quick links/features cards right below the hero banner)
+   ========================================== */
+.quick {
+  margin-top: -55px;
+  position: relative;
+  z-index: 2;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.quick-card {
+  padding: 25px;
+  text-align: center;
+  border-right: 1px solid #e8edf2;
+}
+
+.quick-card:last-child {
+  border: 0;
+}
+
+.icon {
+  font-size: 30px;
+  color: var(--secondary);
+  margin-bottom: 7px;
+}
+
+.quick-card h3 {
+  font-size: 17px;
+  color: var(--primary);
+}
+
+.quick-card p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+
+/* ==========================================
+   7. SECTION HEADINGS & COMMON COMPONENTS
+   (Work: Global section title styling and tags)
+   ========================================== */
+.section-head {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.section-head .tag {
+  color: var(--accent);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 12px;
+}
+
+.section-head h2 {
+  font-size: 35px;
+  color: var(--primary);
+  margin: 7px 0;
+}
+
+.section-head p {
+  max-width: 680px;
+  margin: auto;
+  color: var(--muted);
+}
+
+
+/* ==========================================
+   8. ABOUT SECTION STYLES
+   (Work: School introduction layout, image, and bullet features)
+   ========================================== */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 55px;
+  align-items: center;
+}
+
+.about-img {
+  height: 410px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: url("https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=85")
+    center/cover;
+}
+
+.about h2 {
+  font-size: 37px;
+  color: var(--primary);
+  margin: 8px 0 18px;
+}
+
+.about p {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+  margin: 25px 0;
+}
+
+.features div {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.features span {
+  color: #1c9b62;
+  margin-right: 8px;
+}
+
+
+/* ==========================================
+   9. STATISTICS / NUMBERS SECTION STYLES
+   (Work: Displaying school achievements and statistics in numbers)
+   ========================================== */
+.numbers {
+  background: var(--primary);
+  color: #fff;
+}
+
+.number-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  text-align: center;
+}
+
+.number h3 {
+  font-size: 38px;
+  color: #ffd15b;
+}
+
+.number p {
+  opacity: 0.85;
+}
+
+
+/* ==========================================
+   10. CARDS / SERVICES SECTION STYLES
+   (Work: Grid layout for programs, services, or general cards)
+   ========================================== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.card {
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid #edf1f5;
+}
+
+.card-img {
+  height: 190px;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-body {
+  padding: 23px;
+}
+
+.card-body h3 {
+  color: var(--primary);
+  margin-bottom: 9px;
+}
+
+.card-body p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.card-link {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: bold;
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+.light {
+  background: var(--light);
+}
+
+
+/* ==========================================
+   11. NOTICE BOARD & EVENTS SECTION STYLES
+   (Work: Latest notices, school updates, and upcoming events layout)
+   ========================================== */
+.notice-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 28px;
+}
+
+.panel {
+  background: #fff;
+  border-radius: 10px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+.panel h3 {
+  color: var(--primary);
+  margin-bottom: 18px;
+  font-size: 23px;
+}
+
+.notice {
+  padding: 14px 0;
+  border-bottom: 1px solid #e8edf2;
+  display: flex;
+  gap: 14px;
+}
+
+.date {
+  min-width: 52px;
+  height: 52px;
+  border-radius: 6px;
+  background: #fff2d7;
+  color: #a96800;
+  text-align: center;
+  font-weight: 800;
+  padding-top: 4px;
+  line-height: 1.15;
+}
+
+.date b {
+  font-size: 19px;
+  display: block;
+}
+
+.notice h4 {
+  font-size: 15px;
+}
+
+.notice p {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.event {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.event .calendar {
+  width: 55px;
+  height: 60px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 6px;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.calendar b {
+  display: block;
+  font-size: 20px;
+}
+
+.event h4 {
+  font-size: 15px;
+  color: var(--primary);
+}
+
+.event p {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+
+/* ==========================================
+   12. CALL TO ACTION (CTA) SECTION STYLES
+   (Work: Promotional banner encouraging user action or admission)
+   ========================================== */
+.cta {
+  background: linear-gradient(100deg, var(--secondary), #e88213);
+  color: #fff;
+}
+
+.cta .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.cta h2 {
+  font-size: 32px;
+}
+
+.cta p {
+  opacity: 0.92;
+}
+
+
+/* ==========================================
+   13. GALLERY SLIDER STYLES
+   (Work: Photo slider track, slides, navigation arrows, and dots indicator)
+   ========================================== */
+.gallery-slider {
+  position: relative;
+  max-width: 1000px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  background: #111;
+  touch-action: pan-y;
+}
+
+.gallery-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.gallery-slide {
+  min-width: 100%;
+  height: 500px;
+  position: relative;
+}
+
+.gallery-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.gallery-arrow:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.gallery-prev {
+  left: 16px;
+}
+
+.gallery-next {
+  right: 16px;
+}
+
+.gallery-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 15px;
+  text-align: center;
+  z-index: 5;
+}
+
+.gallery-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.55;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+}
+
+.gallery-dot.active {
+  opacity: 1;
+  transform: scale(1.25);
+}
+
+
+/* ==========================================
+   14. LIGHTBOX MODAL STYLES
+   (Work: Fullscreen image preview popup with navigation controls)
+   ========================================== */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 90vw;
+  max-height: 85vh;
+}
+
+.lightbox img {
+  max-width: 80vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 10002;
+  line-height: 1;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  font-size: 22px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 10001;
+}
+
+.lightbox-nav:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.lightbox-prev {
+  left: -70px;
+}
+
+.lightbox-next {
+  right: -70px;
+}
+
+@media (max-width: 768px) {
+  .lightbox-prev {
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  .lightbox-next {
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+
+/* ==========================================
+   15. CONTACT US & FORM STYLES
+   (Work: Contact details layout, input fields, and submission form)
+   ========================================== */
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.contact-box {
+  display: grid;
+  gap: 18px;
+}
+
+.contact-item {
+  display: flex;
+  gap: 15px;
+}
+
+.contact-item .circle {
+  width: 43px;
+  height: 43px;
+  flex: 0 0 43px;
+  border-radius: 50%;
+  background: #eaf1f8;
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}
+
+.contact-item h4 {
+  color: var(--primary);
+}
+
+.contact-item p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.contact-item a {
+  color: inherit;
+}
+
+.contact-item a:hover {
+  color: var(--accent);
+}
+
+form {
+  display: grid;
+  gap: 13px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid #dce3ea;
+  border-radius: 5px;
+  padding: 13px;
+  font: inherit;
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--primary);
+}
+
+textarea {
+  min-height: 125px;
+  resize: vertical;
+}
+
+
+/* ==========================================
+   16. MAP & LOCATION SECTION STYLES
+   (Work: Google map display card and directions info layout)
+   ========================================== */
+.find-us-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 0.7fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.map-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  min-height: 430px;
+}
+
+.map-card iframe {
+  display: block;
+}
+
+.find-us-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.find-us-info .btn {
+  align-self: flex-start;
+  margin-top: 5px;
+}
+
+
+/* ==========================================
+   17. POPUP NOTIFICATION MODAL STYLES
+   (Work: Pop-up alert/announcement modal displayed on page load)
+   ========================================== */
+.popup-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 20px;
+}
+
+.popup-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-content {
+  position: relative;
+  max-width: 550px;
+  width: 100%;
+  background: #FFB343;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.popup-modal.show .popup-content {
+  transform: scale(1);
+}
+
+.popup-content img {
+  display: block;
+  width: 100%;
+  max-height: 95vh;
+  object-fit: contain;
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.2s;
+}
+
+.popup-close:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+
+/* ==========================================
+   18. RESPONSIVE DESIGN
+   (Work: Mobile-first responsive layouts)
+   ========================================== */
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 60px;
   }
 
-  .mobile-menu-close {
-    display: none;
+  .nav {
+    min-height: 60px;
+  }
+
+  .school-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .brand strong {
+    font-size: 16px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    gap: 0;
+    width: 100%;
+  }
+
+  nav ul.active {
+    max-height: 500px;
+  }
+
+  nav ul li {
+    width: 100%;
+    border-bottom: 1px solid #e8edf2;
+  }
+
+  nav a {
+    display: block;
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .quick-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quick-card {
+    border-right: none;
+    border-bottom: 1px solid #e8edf2;
+  }
+
+  .quick-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .quick-card:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .about-img {
+    height: 300px;
+  }
+
+  .number-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .notice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .find-us-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
   }
 }
