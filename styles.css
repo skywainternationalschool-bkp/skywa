@@ -128,7 +128,7 @@ header {
 nav ul {
   display: flex;
   list-style: none;
-  gap: 26px;
+  gap: 13px;
   align-items: center;
 }
 
@@ -1084,7 +1084,7 @@ nav ul li.dropdown {
 }
 
 .dropdown-toggle .arrow {
-  font-size: 11px;
+  font-size: 14px;
   margin-left: 3px;
   display: inline-block;
   transition: transform 0.2s ease;
@@ -1198,7 +1198,6 @@ nav ul li.dropdown {
   /* Add dropdown indicator arrows to match the reference */
   nav ul#menu li.dropdown > a::after,
   nav ul#menu li:has(.dropdown-menu) > a::after {
-    content: "⌄";
     font-size: 16px;
     font-weight: bold;
   }
@@ -1411,11 +1410,11 @@ nav ul li.dropdown {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 100%;
+    top: 50%;
     left: 0;
     right: 0;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #09f1ea;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     border-top: 1px solid #e2e8f0;
     padding: 10px 0;
