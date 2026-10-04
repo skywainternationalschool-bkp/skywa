@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch('footer.html')
       .then(response => response.text())
       .then(data => { footerPlaceholder.innerHTML = data; 
-  // Yahan current year automatic set ho jayega
         const yearSpan = document.getElementById('year');
         if (yearSpan) {
           yearSpan.textContent = new Date().getFullYear();
@@ -40,20 +39,23 @@ function initializeMobileDropdowns() {
   const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
   dropdownToggles.forEach((toggle) => {
-    if (toggle.dataset.mobileBound === 'true') return;
-    toggle.dataset.mobileBound = 'true';
-
     toggle.addEventListener('click', function(e) {
+      // Only handle dropdowns on mobile
       if (window.innerWidth > 900) return;
+
+      // Check if this toggle has a dropdown menu
+      const parentDropdown = this.closest('.dropdown');
+      const dropdownMenu = parentDropdown ? parentDropdown.querySelector('.dropdown-menu') : null;
+      
+      if (!dropdownMenu) return;
 
       e.preventDefault();
       e.stopPropagation();
 
-      const parentDropdown = this.closest('.dropdown');
-      const dropdownMenu = parentDropdown ? parentDropdown.querySelector('.dropdown-menu') : null;
-      const shouldOpen = !this.classList.contains('active');
+      const isOpen = this.classList.contains('active');
 
-      document.querySelectorAll('.dropdown-toggle').forEach((otherToggle) => {
+      // Close all other dropdowns
+      document.querySelectorAll('.dropdown-toggle.active').forEach((otherToggle) => {
         if (otherToggle !== this) {
           otherToggle.classList.remove('active');
           const otherMenu = otherToggle.closest('.dropdown')?.querySelector('.dropdown-menu');
@@ -61,31 +63,23 @@ function initializeMobileDropdowns() {
         }
       });
 
-      if (dropdownMenu) {
-        this.classList.toggle('active', shouldOpen);
-        dropdownMenu.classList.toggle('show', shouldOpen);
+      // Toggle current dropdown
+      this.classList.toggle('active', !isOpen);
+      dropdownMenu.classList.toggle('show', !isOpen);
+    });
+  });
+
+  // Close menu when clicking on non-dropdown links
+  const menuLinks = document.querySelectorAll('#menu a:not(.dropdown-toggle)');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const menu = document.getElementById('menu');
+      if (menu) {
+        menu.classList.remove('active');
       }
     });
   });
 }
-
-// Close mobile menu on outside click / non-dropdown nav click
-document.addEventListener('click', function(e) {
-  const menu = document.getElementById('menu');
-  if (!menu || !menu.classList.contains('active')) return;
-
-  const clickedOnMenu = e.target.closest('#menu');
-  const clickedMenuBtn = e.target.closest('.menu-btn');
-  const clickedDropdown = e.target.closest('.dropdown-toggle');
-
-  if (!clickedOnMenu && !clickedMenuBtn && !clickedDropdown) {
-    menu.classList.remove('active');
-  }
-
-  if (e.target.tagName === 'A' && !e.target.classList.contains('dropdown-toggle')) {
-    menu.classList.remove('active');
-  }
-});
 
 // Unique Visitor Counter
 async function countUniqueVisitor() {
@@ -136,7 +130,7 @@ function showGallerySlide(index) {
   if (index >= gallerySlides.length) index = 0;
   if (index < 0) index = gallerySlides.length - 1;
   galleryIndex = index;
-  galleryTrack.style.transform = "translateX(-" + galleryIndex * 100 + "% )";
+  galleryTrack.style.transform = "translateX(-" + galleryIndex * 100 + "%)";
   document.querySelectorAll(".gallery-dot").forEach((dot, i) => {
     dot.classList.toggle("active", i === galleryIndex);
   });
