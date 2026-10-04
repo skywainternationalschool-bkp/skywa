@@ -119,16 +119,15 @@ header {
 }
 
 .brand small {
-  color: #0231e3;
-  font-size: 12px;
-font-weight: 600;
+  color: var(--muted);
+  font-size: 11px;
   letter-spacing: 0.8px;
 }
 
 nav ul {
   display: flex;
   list-style: none;
-  gap: 10px;
+  gap: 26px;
   align-items: center;
 }
 
@@ -908,13 +907,6 @@ footer {
   color: #ffffff !important;
 }
 
-@media (max-width: 900px) { /* Mobile menu ke andar alag background shade */
-  nav ul#menu .dropdown-menu {
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.15); 
-    padding-left: 15px;
-  }
-}
 @media (max-width: 900px) {
   nav ul {
     display: none;
@@ -932,96 +924,9 @@ footer {
     display: flex;
   }
   .menu-btn {
-    display: block !important;
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-size: 22px;
-    cursor: pointer;
-  }
-/* Mobile Slide-out Drawer Menu (DPS Style) */
-  nav ul#menu {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    right: -100%; /* Shuru mein screen ke bahar rahega */
-    width: 280px;
-    height: 100vh;
-    background-color: #ffffff;
-    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
-    padding: 70px 20px 20px 20px;
-    z-index: 99999;
-    overflow-y: auto;
-    transition: right 0.35s ease-in-out; /* Smooth sliding effect */
-    list-style: none;
-    align-items: flex-start;
-    gap: 0;
-  }
-
-  /* Jab menu active hoga tab screen par slide hokar aayega */
-  nav ul#menu.active {
-    right: 0; 
-  }
-
-  /* Menu Item Links */
-  nav ul#menu li {
-    width: 100%;
-    border-bottom: 1px solid #edf2f7;
-  }
-
-  nav ul#menu li a {
     display: block;
-    padding: 14px 10px;
-    color: #1a202c;
-    font-size: 15px;
-    font-weight: 600;
-    width: 100%;
   }
-
-  nav ul#menu li a:hover {
-    color: var(--accent);
-    background-color: #f7fafc;
-  }
-
-  /* Dropdown Sub-menu styling for Mobile */
-  nav ul#menu .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    background: #f8fafc;
-    width: 100%;
-    padding-left: 15px;
-    display: none; /* JavaScript ya click se toggle hoga */
-  }
-
-  /* Close Button inside Mobile Drawer */
-  .mobile-menu-close {
-    display: block;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: #e2e8f0;
-    color: #2d3748;
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    font-size: 20px;
-    cursor: pointer;
-    display: grid;
-    place-items: center;
-  }
-}
-
-/* Desktop par close button aur slide drawer hide rahega */
-@media (min-width: 901px) {
-  .mobile-menu-close {
-    display: none;
-  }
-}
-.quick-grid,
+  .quick-grid,
   .number-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -1132,6 +1037,7 @@ footer {
 .popup-content {
   position: relative;
   max-width: 550px;
+  width: 100%;
   background: #FFB343;
   border-radius: 8px;
   overflow: hidden;
@@ -1177,8 +1083,8 @@ nav ul li.dropdown {
 }
 
 .dropdown-toggle .arrow {
-  font-size: 17px;
-  margin-left: 5px;
+  font-size: 11px;
+  margin-left: 3px;
   display: inline-block;
   transition: transform 0.2s ease;
 }
@@ -1291,6 +1197,7 @@ nav ul li.dropdown {
   /* Add dropdown indicator arrows to match the reference */
   nav ul#menu li.dropdown > a::after,
   nav ul#menu li:has(.dropdown-menu) > a::after {
+    content: "⌄";
     font-size: 16px;
     font-weight: bold;
   }
@@ -1507,7 +1414,7 @@ nav ul li.dropdown {
     left: 0;
     right: 0;
     width: 100%;
-    background-color: #09f1ea;
+    background-color: #ffffff;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     border-top: 1px solid #e2e8f0;
     padding: 10px 0;
@@ -1528,7 +1435,7 @@ nav ul li.dropdown {
     display: block;
     padding: 12px 20px;
     color: #263b4f;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 600;
   }
 }
@@ -1704,26 +1611,4 @@ nav ul li.dropdown {
 }
 .footer-bottom-credit strong {
   color: #f97316; /* Vibrant orange matching your Get Directions button */
-}
-@media (max-width: 900px) {
-  /* Shuru mein mobile view mein dropdown chup rahega */
-  nav ul#menu .dropdown-menu {
-    display: none !important;
-    position: static !important;
-    box-shadow: none !important;
-    background:  #09f1ea !important;
-    width: 100% !important;
-    padding-left: 20px !important;
-  }
-
-  /* Jab JS class add karegi tab yeh dikhne lagega */
-  nav ul#menu li.mobile-open > .dropdown-menu {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-
-  /* Optional: Arrow ko rotate karne ke liye */
-  nav ul#menu li.mobile-open > a .arrow {
-    transform: rotate(180deg);
-  }
 }
