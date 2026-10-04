@@ -4,7 +4,10 @@ document.addEventListener("DOMContentLoaded", function() {
   if (headerPlaceholder) {
     fetch('header.html')
       .then(response => response.text())
-      .then(data => { headerPlaceholder.innerHTML = data; })
+      .then(data => { 
+        headerPlaceholder.innerHTML = data;
+        initializeMobileDropdowns();
+      })
       .catch(error => console.error('Error loading header:', error));
   }
 
@@ -15,11 +18,11 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(response => response.text())
       .then(data => { footerPlaceholder.innerHTML = data; 
   // Yahan current year automatic set ho jayega
-      const yearSpan = document.getElementById('year');
-      if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
-      }
-    })
+        const yearSpan = document.getElementById('year');
+        if (yearSpan) {
+          yearSpan.textContent = new Date().getFullYear();
+        }
+      })
       .catch(error => console.error('Error loading footer:', error));
   }
 });
@@ -32,16 +35,56 @@ function toggleMenu() {
   }
 }
 
-// Automatically close the mobile menu when any link inside it is clicked
-document.querySelectorAll('#menu a').forEach((a) => {
-  a.addEventListener('click', (e) => {
-    // If it's a dropdown toggle on mobile, let it toggle subitems instead of closing if desired, 
-    // otherwise close the full menu drawer
-    const menu = document.getElementById('menu');
-    if (menu) {
-      menu.classList.remove('active');
-    }
+// Initialize mobile dropdown toggles
+function initializeMobileDropdowns() {
+  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+  dropdownToggles.forEach((toggle) => {
+    if (toggle.dataset.mobileBound === 'true') return;
+    toggle.dataset.mobileBound = 'true';
+
+    toggle.addEventListener('click', function(e) {
+      if (window.innerWidth > 900) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      const parentDropdown = this.closest('.dropdown');
+      const dropdownMenu = parentDropdown ? parentDropdown.querySelector('.dropdown-menu') : null;
+      const shouldOpen = !this.classList.contains('active');
+
+      document.querySelectorAll('.dropdown-toggle').forEach((otherToggle) => {
+        if (otherToggle !== this) {
+          otherToggle.classList.remove('active');
+          const otherMenu = otherToggle.closest('.dropdown')?.querySelector('.dropdown-menu');
+          if (otherMenu) otherMenu.classList.remove('show');
+        }
+      });
+
+      if (dropdownMenu) {
+        this.classList.toggle('active', shouldOpen);
+        dropdownMenu.classList.toggle('show', shouldOpen);
+      }
+    });
   });
+}
+
+// Close mobile menu on outside click / non-dropdown nav click
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('menu');
+  if (!menu || !menu.classList.contains('active')) return;
+
+  const clickedOnMenu = e.target.closest('#menu');
+  const clickedMenuBtn = e.target.closest('.menu-btn');
+  const clickedDropdown = e.target.closest('.dropdown-toggle');
+
+  if (!clickedOnMenu && !clickedMenuBtn && !clickedDropdown) {
+    menu.classList.remove('active');
+  }
+
+  if (e.target.tagName === 'A' && !e.target.classList.contains('dropdown-toggle')) {
+    menu.classList.remove('active');
+  }
 });
 
 // Unique Visitor Counter
@@ -93,7 +136,7 @@ function showGallerySlide(index) {
   if (index >= gallerySlides.length) index = 0;
   if (index < 0) index = gallerySlides.length - 1;
   galleryIndex = index;
-  galleryTrack.style.transform = "translateX(-" + galleryIndex * 100 + "%)";
+  galleryTrack.style.transform = "translateX(-" + galleryIndex * 100 + "% )";
   document.querySelectorAll(".gallery-dot").forEach((dot, i) => {
     dot.classList.toggle("active", i === galleryIndex);
   });
@@ -178,6 +221,7 @@ function closeLightbox(e) {
   if (e && e.target && (e.target.id === 'lightboxImg' || e.target.classList.contains('lightbox-nav'))) return;
   document.getElementById('lightbox').classList.remove('open');
 }
+
 // Live Visitor Local Date & Time Display
 function updateVisitorDateTime() {
   const visitorElement = document.getElementById("visitorDateTime");
