@@ -907,6 +907,13 @@ footer {
   color: #ffffff !important;
 }
 
+@media (max-width: 900px) { /* Mobile menu ke andar alag background shade */
+  nav ul#menu .dropdown-menu {
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.15); 
+    padding-left: 15px;
+  }
+}
 @media (max-width: 900px) {
   nav ul {
     display: none;
@@ -1283,7 +1290,6 @@ nav ul li.dropdown {
   /* Add dropdown indicator arrows to match the reference */
   nav ul#menu li.dropdown > a::after,
   nav ul#menu li:has(.dropdown-menu) > a::after {
-    content: "⌄";
     font-size: 16px;
     font-weight: bold;
   }
