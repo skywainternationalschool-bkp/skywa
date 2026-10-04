@@ -70,6 +70,29 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  const dropdownToggles = document.querySelectorAll("nav ul#menu li.dropdown > a, nav ul#menu li.has-dropdown > a, nav ul#menu li > a");
+
+  dropdownToggles.forEach(link => {
+    const parentLi = link.parentElement;
+    const submenu = parentLi.querySelector('.dropdown-menu');
+
+    if (submenu) {
+      link.addEventListener("click", function(e) {
+        // Sirf mobile view ke liye
+        const mobileMenu = document.getElementById('menu');
+        if (mobileMenu && window.innerWidth <= 900) {
+          e.preventDefault(); // Link khulne se rokein
+          
+          // Baaki sabhi sub-menus band kar dein aur isse toggle karein
+          parentLi.classList.toggle('mobile-open');
+        }
+      });
+    }
+  });
+});
+
 // Unique Visitor Counter
 async function countUniqueVisitor() {
   const counter = document.getElementById('visitorCount');
