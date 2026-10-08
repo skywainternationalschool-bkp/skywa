@@ -1,0 +1,21 @@
+{
+  "name": "Skywa International School",
+  "short_name": "Skywa School",
+  "description": "Official Website of Skywa International School, Bakhtiyarpur",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f6838",
+  "icons": [
+    {
+      "src": "skywa-school-assets/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "skywa-school-assets/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
