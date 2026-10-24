@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fee Structure for New Admissions - Skywa International School, Bakhtiyarpur.">
+  <title>Fee Structure - Skywa International School</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="skywa-school-assets/favicon.png">
+
+<!-- PWA Manifest for PC/Mobile App Installation -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Theme color for mobile/desktop browser toolbars -->
+  <meta name="theme-color" content="#0f6838">
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+ 
+  <style>
+    /* Academic Calendar Page Custom Styling */
+    .calendar-section {
+      max-width: 1100px;
+      margin: 30px auto 50px auto;
+      padding: 0 20px;
+    }
+
+    .calendar-header-title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .calendar-header-title h1 {
+      font-size: 28px;
+      color: #0f6838;
+      margin-bottom: 8px;
+    }
+
+    .calendar-header-title p {
+      color: #64748b;
+      font-size: 15px;
+    }
+
+    /* Toolbar for Zoom Controls */
+    .calendar-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      background: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .zoom-btn {
+      background-color: #0f6838;
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .zoom-btn:hover {
+      background-color: #0a4d28;
+    }
+
+    .zoom-btn:active {
+      transform: scale(0.97);
+    }
+
+    .zoom-info {
+      font-weight: 700;
+      color: #334155;
+      font-size: 14px;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    /* Interactive Zoom Container */
+    .calendar-viewer-wrapper {
+      position: relative;
+      width: 100%;
+      height: 700px;
+      background-color: #1e293b;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      cursor: grab;
+      user-select: none;
+    }
+
+    .calendar-viewer-wrapper:active {
+      cursor: grabbing;
+    }
+
+    .calendar-img-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform-origin: center center;
+      transition: transform 0.1s ease-out;
+    }
+
+    .calendar-img-container img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+      background: #ffffff;
+    }
+
+    /* Fullscreen view mode adjustments */
+    .calendar-viewer-wrapper:-webkit-full-screen {
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
+    }
+
+    .calendar-viewer-wrapper:fullscreen {
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
+    }
+
+    @media (max-width: 768px) {
+      .calendar-viewer-wrapper {
+        height: 500px;
+      }
+      .zoom-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+      }
+    }
+    </style>
+</head>
+
+  <body>
+<!-- Header will be automatically injected here -->
+<div id="site-header"></div>
+
+  <main>
+    <section class="hero" style="min-height: 220px; background-position: center;">
+      <div class="container">
+        <div class="hero-content" style="padding: 30px 0;">
+          <span class="eyebrow">ACADEMY CALENDER</span>
+          <h1>Calender</h1>
+          <p>Official breakdown of Holidays, Exam, Vacation.</p>
+        </div>
+      </div>
+
+      <!-- Main Calendar Section -->
+  <main>
+    <section class="calendar-section">
+      <div class="calendar-header-title">
+        <h1>Academic Calendar 2026-27</h1>
+        <p>Use the controls below or drag and scroll with your mouse/touch to inspect exam dates & holidays.</p>
+      </div>
+
+      <!-- Control Bar -->
+      <div class="calendar-controls">
+        <button class="zoom-btn" onclick="zoomIn()">🔍 Zoom In (+)</button>
+        <button class="zoom-btn" onclick="zoomOut()">🔍 Zoom Out (-)</button>
+        <span class="zoom-info" id="zoomLevel">100%</span>
+        <button class="zoom-btn" onclick="resetZoom()">🔄 Reset View</button>
+        <button class="zoom-btn" onclick="toggleFullscreen()" style="background-color: #f97316;">⛶ Fullscreen</button>
+      </div>
+
+      <!-- Zoomable Viewer -->
+      <div class="calendar-viewer-wrapper" id="viewerWrapper">
+        <div class="calendar-img-container" id="imgContainer">
+          <!-- Calendar Image Path -->
+          <img src="academy.jpg" id="calendarImg" alt="Skywa International School Academic Calendar 2026-27">
+        </div>
+      </div>
+    </section>
+</main>
+
+  
+  <!-- Footer will be automatically injected here -->
+<div id="site-footer"></div>
+  
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
