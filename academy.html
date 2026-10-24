@@ -197,6 +197,83 @@
 <div id="site-footer"></div>
   
   <!-- External JavaScript -->
-  <script src="script.js"></script>
+  <script>
+    let scale = 1;
+    let pointX = 0;
+    let pointY = 0;
+    let startX = 0;
+    let startY = 0;
+    let isDragging = false;
+
+    const wrapper = document.getElementById('viewerWrapper');
+    const container = document.getElementById('imgContainer');
+    const zoomText = document.getElementById('zoomLevel');
+
+    function updateTransform() {
+      container.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
+      zoomText.innerText = Math.round(scale * 100) + '%';
+    }
+
+    function zoomIn() {
+      if (scale < 4) {
+        scale += 0.25;
+        updateTransform();
+      }
+    }
+
+    function zoomOut() {
+      if (scale > 0.6) {
+        scale -= 0.25;
+        updateTransform();
+      }
+    }
+
+    function resetZoom() {
+      scale = 1;
+      pointX = 0;
+      pointY = 0;
+      updateTransform();
+    }
+
+    // Mouse Wheel Zoom
+    wrapper.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const delta = e.deltaY < 0 ? 0.15 : -0.15;
+      if (scale + delta >= 0.5 && scale + delta <= 4) {
+        scale += delta;
+        updateTransform();
+      }
+    });
+
+    // Drag / Pan Controls
+    wrapper.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      isDragging = true;
+      startX = e.clientX - pointX;
+      startY = e.clientY - pointY;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      pointX = e.clientX - startX;
+      pointY = e.clientY - startY;
+      updateTransform();
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    // Fullscreen Toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        wrapper.requestFullscreen().catch(err => {
+          alert(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  </script>
 </body>
 </html>
