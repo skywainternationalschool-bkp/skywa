@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Fee Structure for New Admissions - Skywa International School, Bakhtiyarpur.">
-  <title>Fee Structure - Skywa International School</title>
+  <meta name="description" content="Academic Calendar 2026-27 - Skywa International School, Bakhtiyarpur.">
+  <title>Academic Calendar - Skywa International School</title>
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="skywa-school-assets/favicon.png">
 
-<!-- PWA Manifest for PC/Mobile App Installation -->
+  <!-- PWA Manifest for PC/Mobile App Installation -->
   <link rel="manifest" href="manifest.json">
 
   <!-- Theme color for mobile/desktop browser toolbars -->
@@ -148,25 +148,27 @@
         font-size: 13px;
       }
     }
-    </style>
+  </style>
 </head>
 
-  <body>
-<!-- Header will be automatically injected here -->
-<div id="site-header"></div>
+<body>
+
+  <!-- Header will be automatically injected here -->
+  <div id="site-header"></div>
 
   <main>
+    <!-- Hero Section -->
     <section class="hero" style="min-height: 220px; background-position: center;">
       <div class="container">
         <div class="hero-content" style="padding: 30px 0;">
-          <span class="eyebrow">ACADEMY CALENDER</span>
-          <h1>Calender</h1>
-          <p>Official breakdown of Holidays, Exam, Vacation.</p>
+          <span class="eyebrow">ACADEMIC CALENDAR</span>
+          <h1>Calendar 2026-27</h1>
+          <p>Official breakdown of Holidays, Exams, and Vacations.</p>
         </div>
       </div>
+    </section>
 
-      <!-- Main Calendar Section -->
-  <main>
+    <!-- Main Calendar Section -->
     <section class="calendar-section">
       <div class="calendar-header-title">
         <h1>Academic Calendar 2026-27</h1>
@@ -190,13 +192,13 @@
         </div>
       </div>
     </section>
-</main>
+  </main>
 
-  
   <!-- Footer will be automatically injected here -->
-<div id="site-footer"></div>
+  <div id="site-footer"></div>
   
-  <!-- External JavaScript -->
+  <!-- External JavaScript & Zoom Engine -->
+  <script src="script.js"></script>
   <script>
     let scale = 1;
     let pointX = 0;
@@ -243,7 +245,7 @@
         scale += delta;
         updateTransform();
       }
-    });
+    }, { passive: false });
 
     // Drag / Pan Controls
     wrapper.addEventListener('mousedown', (e) => {
